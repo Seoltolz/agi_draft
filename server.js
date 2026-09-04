@@ -19,6 +19,11 @@ const DATA_DIR = path.join(__dirname, 'data');
 const DECKS_DIR = path.join(DATA_DIR, 'decks');
 const HISTORY_DIR = path.join(DATA_DIR, 'history');
 const STATS_FILE = path.join(DATA_DIR, 'stats.json');
+const PLAYER_STATS_FILE = path.join(DATA_DIR, 'players.json');
+
+for (const dir of [DATA_DIR, DECKS_DIR, HISTORY_DIR]) {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+}
 
 // ---------- Deck loading ----------
 function loadDecks() {
@@ -27,12 +32,20 @@ function loadDecks() {
   for (const f of files) {
     try {
       const d = JSON.parse(fs.readFileSync(path.join(DECKS_DIR, f), 'utf8'));
-      // Normalize card shape
+      // Normalize card shape (with extended fields)
       for (const kind of ['occupations','minorImprovements']){
         d[kind] = (d[kind]||[]).map(c => ({
           code: String(c.code),
           name: String(c.name||''),
+          nameEn: String(c.nameEn||''),
           ability: String(c.ability||''),
+          abilityEn: String(c.abilityEn||''),
+          cost: String(c.cost||''),
+          cost2: String(c.cost2||''),
+          vp: String(c.vp||''),
+          condition: String(c.condition||''),
+          passing: String(c.passing||''),
+          category: String(c.category||''),
           imageUrl: String(c.imageUrl||''),
         }));
       }
@@ -55,6 +68,16 @@ function loadStats(){
 }
 function saveStats(s){ fs.writeFileSync(STATS_FILE, JSON.stringify(s, null, 2)); }
 let STATS = loadStats();
+
+// ---------- Player stats (누적 티어 랭킹) ----------
+function loadPlayerStats(){
+  try { return JSON.parse(fs.readFileSync(PLAYER_STATS_FILE,'utf8')); }
+  catch { return { players: {} }; }
+  // players: { normalizedName: { name, drafts, ratingSum, ratingCount, mvpCount, dudCount, wins } }
+}
+function savePlayerStats(s){ fs.writeFileSync(PLAYER_STATS_FILE, JSON.stringify(s, null, 2)); }
+let PLAYER_STATS = loadPlayerStats();
+function normName(s){ return String(s||'').trim().toLowerCase(); }
 
 // ---------- Utils ----------
 function shuffle(arr) {
@@ -86,6 +109,9 @@ function publicRoom(room) {
 
 function playerView(room, playerId) {
   const me = room.players.find(p => p.id === playerId);
+  // Privacy rule: during drafting, other players' picks are HIDDEN.
+  // Only reveal after status === 'finished' (voting or results phase).
+  const draftDone = room.status === 'finished';
   return {
     room: publicRoom(room),
     me: me ? {
@@ -98,11 +124,13 @@ function playerView(room, playerId) {
     others: room.players.map(p => p.id === playerId ? null : ({
       id: p.id, name: p.name,
       handSize: (room.hands[p.id] || []).length,
-      picked: p.picked,
+      picked: draftDone ? p.picked : [],           // 드래프트 중에는 빈 배열
+      pickedCount: p.picked.length,                // 몇 장 픽했는지 수만 노출
       hasPickedThisRound: !!p.pickedThisRound,
     })).filter(Boolean),
-    log: room.log,
-    voting: room.voting || null,   // { open, results }
+    // 로그도 드래프트 종료 후에만 공개
+    log: draftDone ? room.log : [],
+    voting: room.voting || null,
   };
 }
 
@@ -271,6 +299,44 @@ function finalizeVoting(room){
     }
   }
   saveStats(STATS);
+
+  // ---- Player tier accumulation ----
+  const tally = tallyVotes(room);
+  // MVP/dud count per PICKER (which player's cards got flagged)
+  const pickerMvp = {}, pickerDud = {};
+  for (const p of room.players){ pickerMvp[p.id]=0; pickerDud[p.id]=0; }
+  for (const voter of Object.values(room.votes||{})){
+    for (const code of voter.mvpCards||[]){
+      const owner = room.players.find(p => p.picked.some(c=>c.code===code));
+      if (owner) pickerMvp[owner.id] = (pickerMvp[owner.id]||0)+1;
+    }
+    for (const code of voter.dudCards||[]){
+      const owner = room.players.find(p => p.picked.some(c=>c.code===code));
+      if (owner) pickerDud[owner.id] = (pickerDud[owner.id]||0)+1;
+    }
+  }
+  // Determine winner(s): highest avg rating
+  const maxAvg = Math.max(0, ...room.players.map(p=>tally[p.id]?.avg||0));
+  for (const p of room.players){
+    const key = normName(p.name);
+    if (!key) continue;
+    const rec = PLAYER_STATS.players[key] || {
+      name: p.name, drafts: 0, ratingSum: 0, ratingCount: 0,
+      mvpCount: 0, dudCount: 0, wins: 0, lastPlayed: null,
+    };
+    rec.name = p.name;
+    rec.drafts += 1;
+    const t = tally[p.id] || {};
+    rec.ratingSum += (t.total||0);
+    rec.ratingCount += (t.count||0);
+    rec.mvpCount += pickerMvp[p.id]||0;
+    rec.dudCount += pickerDud[p.id]||0;
+    if (maxAvg > 0 && (t.avg||0) >= maxAvg) rec.wins += 1;
+    rec.lastPlayed = new Date().toISOString();
+    PLAYER_STATS.players[key] = rec;
+  }
+  savePlayerStats(PLAYER_STATS);
+
   // Overwrite the history file with final tallies
   if (room.historyFile){
     try {
@@ -408,6 +474,39 @@ app.get('/api/history/:file', (req, res) => {
 app.get('/api/stats', (req, res) => {
   const arr = Object.entries(STATS.cards).map(([code, v]) => ({ code, ...v }));
   arr.sort((a,b)=> (b.score||0) - (a.score||0));
+  res.json(arr);
+});
+
+// Player leaderboard
+app.get('/api/players', (req, res) => {
+  const arr = Object.entries(PLAYER_STATS.players).map(([key, v]) => {
+    const avg = v.ratingCount ? +(v.ratingSum/v.ratingCount).toFixed(2) : 0;
+    const score = avg * 2 + (v.mvpCount||0) * 0.5 - (v.dudCount||0) * 0.5 + (v.wins||0) * 1;
+    return { key, ...v, avgRating: avg, score: +score.toFixed(2) };
+  });
+  arr.sort((a,b)=> (b.score||0) - (a.score||0));
+  res.json(arr);
+});
+
+// Deck-level tier: aggregate card stats per deck
+app.get('/api/deck-stats', (req, res) => {
+  const byDeck = {};
+  for (const [code, v] of Object.entries(STATS.cards)){
+    const did = v.deckId || 'wm';
+    if (!byDeck[did]) byDeck[did] = { deckId: did, cards: 0, seen: 0, picked: 0, score: 0, mvpNet: 0 };
+    byDeck[did].cards += 1;
+    byDeck[did].seen += (v.seen||0);
+    byDeck[did].picked += (v.picked||0);
+    byDeck[did].score += (v.score||0);
+    byDeck[did].mvpNet += (v.votes||0);
+  }
+  const arr = Object.values(byDeck).map(d => ({
+    ...d,
+    pickRate: d.seen ? +(d.picked/d.seen).toFixed(3) : 0,
+    avgCardScore: d.cards ? +(d.score/d.cards).toFixed(3) : 0,
+    deckName: DECKS[d.deckId]?.name || d.deckId,
+  }));
+  arr.sort((a,b)=> b.avgCardScore - a.avgCardScore);
   res.json(arr);
 });
 
