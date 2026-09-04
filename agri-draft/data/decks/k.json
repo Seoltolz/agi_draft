@@ -1,0 +1,555 @@
+{
+  "id": "k",
+  "name": "K-Deck (기본판 확장)",
+  "description": "기본판 확장 K번 카드 (직업 + 부속설비).",
+  "occupations": [
+    {
+      "code": "K266",
+      "name": "Serf",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K267",
+      "name": "Adoptive Parents",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K268",
+      "name": "Pieceworker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K269",
+      "name": "Acrobat",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K270",
+      "name": "Wet Nurse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K271",
+      "name": "Educator",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K272",
+      "name": "Frame Builder",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K273",
+      "name": "Basin Maker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K274",
+      "name": "Organic Farmer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K275",
+      "name": "Perpetual Student",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K276",
+      "name": "Constable",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K277",
+      "name": "Manufacturer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K278",
+      "name": "Forester",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K279",
+      "name": "Scholar",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K280",
+      "name": "Tanner",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K281",
+      "name": "Traveling Salesman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K282",
+      "name": "House Steward",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K283",
+      "name": "Wood Deliveryman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K284",
+      "name": "Wood Distributor",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K285",
+      "name": "Tinsmith",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K286",
+      "name": "Smallholder",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K287",
+      "name": "Storehouse Clerk",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K288",
+      "name": "Storehouse Keeper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K289",
+      "name": "Countryman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K290",
+      "name": "Clay Worker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K291",
+      "name": "Lover",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K292",
+      "name": "Market Woman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K293",
+      "name": "Ploughman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K294",
+      "name": "Brushwood Collector",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K295",
+      "name": "Cattle Breeder",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K296",
+      "name": "Seed Seller",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K297",
+      "name": "Sheep Farmer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K298",
+      "name": "Shepherd Boy",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K299",
+      "name": "Slaughterman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K300",
+      "name": "Schnaps Distiller",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K301",
+      "name": "Wood Carver",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K302",
+      "name": "Pig Whisperer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K303",
+      "name": "Stone Breaker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K304",
+      "name": "Veterinarian",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K305",
+      "name": "Animal Handler",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K306",
+      "name": "Animal Tamer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K307",
+      "name": "Animal Breeder",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K308",
+      "name": "Foreman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K309",
+      "name": "Weaver",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K310",
+      "name": "Resource Seller",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K311",
+      "name": "Magician",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K312",
+      "name": "Fence Overseer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K342",
+      "name": "Animal Trainer",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ],
+  "minorImprovements": [
+    {
+      "code": "K105",
+      "name": "Acreage",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K106",
+      "name": "Bakehouse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K107",
+      "name": "Lumber",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K108",
+      "name": "Beehive",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K109",
+      "name": "Spit Roast",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K110",
+      "name": "Brewery",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K111",
+      "name": "Bread Paddle",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K112",
+      "name": "Bookshelf",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K113",
+      "name": "Flail",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K114",
+      "name": "Duck Pond",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K115",
+      "name": "Swing Plough",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K116",
+      "name": "Granary",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K117",
+      "name": "Greenhouse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K118",
+      "name": "Liquid Manure",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K119",
+      "name": "Crooked Plough",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K120",
+      "name": "House Goat",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K121",
+      "name": "Sawhorse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K122",
+      "name": "Sawmill",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K123",
+      "name": "Wooden Strongbox",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K124",
+      "name": "Yoke",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K125",
+      "name": "Broom",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K126",
+      "name": "Landing Net",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K127",
+      "name": "Clapper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K128",
+      "name": "CookingHearth",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K129",
+      "name": "Corn Sheaf",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K130",
+      "name": "Herb Garden",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K131",
+      "name": "Clay Pit",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K132",
+      "name": "Clay Hut Extension",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K133",
+      "name": "Milking Stool",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K134",
+      "name": "Ox Team",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K135",
+      "name": "Horse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K136",
+      "name": "Brushwood Roof",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K137",
+      "name": "Turnip Field",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K138",
+      "name": "Reed Hut",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K139",
+      "name": "Sleeping Corner",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K140",
+      "name": "Swan Lake",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K141",
+      "name": "Boar Breeding",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K142",
+      "name": "Stone Cart",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K143",
+      "name": "Stone Exchange",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K144",
+      "name": "Mansion",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K145",
+      "name": "Forest Pasture",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K146",
+      "name": "Loom",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "K339",
+      "name": "Pelts",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ]
+}

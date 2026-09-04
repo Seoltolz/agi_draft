@@ -1,0 +1,723 @@
+{
+  "id": "g",
+  "name": "G-Deck (Gamers Deck)",
+  "description": "게이머스 덱 확장 (G번).",
+  "occupations": [
+    {
+      "code": "G001",
+      "name": "Alternative Designer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G002",
+      "name": "Animal Farmer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G003",
+      "name": "Animal Holder",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G004",
+      "name": "Apprentice",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G005",
+      "name": "Architect",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G006",
+      "name": "Artisan",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G007",
+      "name": "Astronomer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G008",
+      "name": "Auctioneer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G009",
+      "name": "Baker's Daughter",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G010",
+      "name": "Bard",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G011",
+      "name": "Carrot Cake Baker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G012",
+      "name": "Carrot Farmer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G013",
+      "name": "Clay Starter",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G014",
+      "name": "Early Riser",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G015",
+      "name": "Family Counselor",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G016",
+      "name": "Fence Helper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G017",
+      "name": "Fish Seller",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G018",
+      "name": "Fisherman's Apprentice",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G019",
+      "name": "Food Critic",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G020",
+      "name": "Freeloader",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G021",
+      "name": "Hermit",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G022",
+      "name": "Glass Blower",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G023",
+      "name": "Glutton",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G024",
+      "name": "Grafter",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G025",
+      "name": "Businesswoman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G026",
+      "name": "Grain Farmer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G027",
+      "name": "Grain Lover",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G028",
+      "name": "Grump",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G029",
+      "name": "Harbor Master",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G030",
+      "name": "Headmaster",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G031",
+      "name": "Helper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G032",
+      "name": "Hobbyist",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G033",
+      "name": "Hoe Maker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G034",
+      "name": "Inventor",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G035",
+      "name": "Job Seeker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G036",
+      "name": "Late Bloomer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G037",
+      "name": "Late Sleeper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G038",
+      "name": "Master Baker's Apprentice",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G039",
+      "name": "Mathematician",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G040",
+      "name": "Miner",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G041",
+      "name": "Mooch",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G042",
+      "name": "Oldest Occupation",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G043",
+      "name": "Opportunist",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G044",
+      "name": "Pearl Seeker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G045",
+      "name": "Pilgrim",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G046",
+      "name": "Pond Watchman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G047",
+      "name": "Resource Collector",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G048",
+      "name": "Ringmaster",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G049",
+      "name": "Seed Master",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G050",
+      "name": "Singer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G051",
+      "name": "Stone Deliveryman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G052",
+      "name": "Stone Trader",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G053",
+      "name": "Stonepiler",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G054",
+      "name": "Tax Collector",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G055",
+      "name": "Truffle Digger",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G056",
+      "name": "Understudy",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G057",
+      "name": "Vegetarian",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G058",
+      "name": "Village Farmer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G059",
+      "name": "Wheedler",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G060",
+      "name": "Wintercrafter",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ],
+  "minorImprovements": [
+    {
+      "code": "G061",
+      "name": "Almanac",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G062",
+      "name": "Animal Farm",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G063",
+      "name": "Baking Field",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G064",
+      "name": "Bartering Hut",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G065",
+      "name": "Beehive Oven",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G066",
+      "name": "Birthstone",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G067",
+      "name": "Bountiful Harvest",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G068",
+      "name": "Chronicle",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G069",
+      "name": "Clear Cutting",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G070",
+      "name": "Corral",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G071",
+      "name": "Cow Bell",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G072",
+      "name": "Dunghill",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G073",
+      "name": "Errant Oven",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G074",
+      "name": "Extra Effort",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G075",
+      "name": "Farmers Market",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G076",
+      "name": "Gardening Tools",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G077",
+      "name": "Gimlet",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G078",
+      "name": "Grain Market",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G079",
+      "name": "Hammer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G080",
+      "name": "Harvest Feast",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G081",
+      "name": "Hayloft",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G082",
+      "name": "Hired Helpers",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G083",
+      "name": "Holiday Present",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G084",
+      "name": "Horse Barn",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G085",
+      "name": "Irrigation Canal",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G086",
+      "name": "Itinerant Laborers",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G087",
+      "name": "Magic Beans",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G088",
+      "name": "Meat Pie",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G089",
+      "name": "Migrant Workers",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G090",
+      "name": "Paddocks",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G091",
+      "name": "Pelt Roof",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G092",
+      "name": "Pine Forest",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G093",
+      "name": "Plentiful Fields",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G094",
+      "name": "Potter's Wheel",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G095",
+      "name": "Private Market",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G096",
+      "name": "Private School",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G097",
+      "name": "Pulley",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G098",
+      "name": "Pumpkin Pie",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G099",
+      "name": "Reed Beds",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G100",
+      "name": "Reed Sale",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G101",
+      "name": "Remodeling",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G102",
+      "name": "Sausage Grinder",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G103",
+      "name": "Scythe",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G104.",
+      "name": "Seasonal Plants",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G105",
+      "name": "Seed Spreader",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G106",
+      "name": "Shared Wall",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G107",
+      "name": "Sheep Market",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G108",
+      "name": "Sheepdog",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G109",
+      "name": "Sheepskin Rug",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G110",
+      "name": "Shovel",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G111",
+      "name": "Sickle",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G112",
+      "name": "Stone Crane",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G113",
+      "name": "Stone Kitchen",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G114",
+      "name": "Stonecutter's Hall",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G115",
+      "name": "Fish Farm",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G116",
+      "name": "Tree House",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G117",
+      "name": "Vegetable Scoop",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G118",
+      "name": "Winter Garden",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "G119",
+      "name": "Wooden Bridge",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ]
+}

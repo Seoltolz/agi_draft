@@ -1,0 +1,165 @@
+{
+  "id": "z",
+  "name": "Z-Deck (Z Deck)",
+  "description": "Z번 미니 확장 (Z313~).",
+  "occupations": [
+    {
+      "code": "Z325",
+      "name": "Village Beauty",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z326",
+      "name": "Gentleman",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z327",
+      "name": "Herald",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z328",
+      "name": "Cooper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z329",
+      "name": "Mail Coach Driver (German)",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z329*",
+      "name": "Mail Coach Driver (English)",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z330",
+      "name": "Taxidermist",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z331",
+      "name": "Sower (German)",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z331*",
+      "name": "Sower (English)",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z332",
+      "name": "Seed Trader",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z333",
+      "name": "Game Designer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z334",
+      "name": "Dance Instructor",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z335",
+      "name": "Cube Cutter",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z336",
+      "name": "Mother of Twins",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ],
+  "minorImprovements": [
+    {
+      "code": "Z313",
+      "name": "Stump-Jump Plough",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z314",
+      "name": "Keg",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z315",
+      "name": "Brewer's Copper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z316",
+      "name": "Bust",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z317",
+      "name": "Family Portrait",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z318",
+      "name": "Barbecue",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z319",
+      "name": "Pumpkin Seed Oil",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z320",
+      "name": "Maypole",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z321",
+      "name": "Ranch",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z322",
+      "name": "Dozing Bull",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z323",
+      "name": "Giant Pumpkin",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "Z324",
+      "name": "Scarecrow",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ]
+}

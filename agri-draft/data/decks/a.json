@@ -1,0 +1,56 @@
+{
+  "id": "a",
+  "name": "Base (A · 기본판)",
+  "description": "Agricola 기본판 오리지널 카드 (A1~A10 개선물).",
+  "occupations": [],
+  "minorImprovements": [
+    {
+      "code": "A1/A2",
+      "name": "Fireplace",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "A3/A4",
+      "name": "Cooking Hearth",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "A5",
+      "name": "Clay Oven",
+      "ability": "요리 시설(빵 굽기 · 곡식→음식 변환).",
+      "imageUrl": ""
+    },
+    {
+      "code": "A6",
+      "name": "Stone Oven",
+      "ability": "요리 시설(빵 굽기 · 곡식→음식 강력 변환).",
+      "imageUrl": ""
+    },
+    {
+      "code": "A7",
+      "name": "Joinery",
+      "ability": "목재 관련 부속(점수 · 자원 변환).",
+      "imageUrl": ""
+    },
+    {
+      "code": "A8",
+      "name": "Pottery",
+      "ability": "흙 관련 부속(점수 · 자원 변환).",
+      "imageUrl": ""
+    },
+    {
+      "code": "A9",
+      "name": "Basketmaker's Workshop",
+      "ability": "갈대 관련 부속(점수 · 자원 변환).",
+      "imageUrl": ""
+    },
+    {
+      "code": "A10",
+      "name": "Well",
+      "ability": "우물(라운드마다 음식 · 게임 종료 시 점수).",
+      "imageUrl": ""
+    }
+  ]
+}
