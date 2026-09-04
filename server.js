@@ -99,6 +99,8 @@ function publicRoom(room) {
     deckIds: room.deckIds,
     decks: room.deckIds.map(id => DECKS[id] ? { id, name: DECKS[id].name } : { id, name: id }),
     cardsPerHand: room.cardsPerHand,
+    turnLimitSec: room.turnLimitSec || 0,
+    turnDeadline: room.turnDeadline || null,
     players: room.players.map(p => ({ id: p.id, name: p.name, ready: !!p.ready, pickedCount: p.picked.length })),
     status: room.status,
     phase: room.phase,
@@ -176,7 +178,43 @@ function dealPhase(room, phase) {
   saveStats(STATS);
   room.phase = phase;
   room.round = 1;
+  startTurnTimer(room);
   return { ok: true };
+}
+
+function startTurnTimer(room){
+  clearTurnTimer(room);
+  if (!room.turnLimitSec || room.turnLimitSec <= 0) { room.turnDeadline = null; return; }
+  room.turnDeadline = Date.now() + room.turnLimitSec * 1000;
+  room.turnTimer = setTimeout(()=>autoPickForPending(room), room.turnLimitSec * 1000 + 50);
+}
+function clearTurnTimer(room){
+  if (room.turnTimer){ clearTimeout(room.turnTimer); room.turnTimer = null; }
+  room.turnDeadline = null;
+}
+
+function autoPickForPending(room){
+  if (!room || room.status !== 'drafting') return;
+  let anyAuto = false;
+  for (const p of room.players){
+    if (p.pickedThisRound) continue;
+    const hand = room.hands[p.id] || [];
+    if (hand.length === 0) continue;
+    // Auto-pick a random card
+    const idx = Math.floor(Math.random() * hand.length);
+    const [card] = hand.splice(idx, 1);
+    p.picked.push({ ...card, phase: room.phase, round: room.round, auto: true });
+    p.pickedThisRound = true;
+    room.log.push({ phase:room.phase, round:room.round, playerId:p.id, playerName:p.name, card, auto:true, ts:Date.now() });
+    anyAuto = true;
+  }
+  if (anyAuto){
+    const anyLeft = room.players.some(pp => (room.hands[pp.id]||[]).length > 0);
+    if (anyLeft) passHands(room);
+    else { room.round += 1; endPhaseOrDraft(room); }
+    if (room.status === 'drafting') startTurnTimer(room);
+    emitRoom(room);
+  }
 }
 
 function allPickedThisRound(room) {
@@ -471,6 +509,9 @@ app.get('/api/history/:file', (req, res) => {
   res.sendFile(p);
 });
 
+// CSV templates served statically
+app.use('/templates', express.static(path.join(__dirname, 'templates')));
+
 app.get('/api/stats', (req, res) => {
   const arr = Object.entries(STATS.cards).map(([code, v]) => ({ code, ...v }));
   arr.sort((a,b)=> (b.score||0) - (a.score||0));
@@ -515,17 +556,19 @@ io.on('connection', (socket) => {
   let currentRoomId = null;
   let currentPlayerId = null;
 
-  socket.on('createRoom', ({ name, deckIds, cardsPerHand }, cb) => {
+  socket.on('createRoom', ({ name, deckIds, cardsPerHand, turnLimitSec }, cb) => {
     try {
       if (!name || !name.trim()) return cb && cb({ error: '이름을 입력하세요.' });
       if (!Array.isArray(deckIds) || deckIds.length === 0) return cb && cb({ error: '덱을 1개 이상 선택하세요.' });
       for (const id of deckIds) if (!DECKS[id]) return cb && cb({ error: `알 수 없는 덱: ${id}` });
       const cph = Number(cardsPerHand) || 7;
       if (cph < 3 || cph > 10) return cb && cb({ error: '한손 카드 수는 3~10.' });
+      const tls = Math.max(0, Math.min(600, Number(turnLimitSec)||0));
       const roomId = nanoid(6).toUpperCase();
       const playerId = nanoid(8);
       const room = {
         id: roomId, hostId: playerId, deckIds, cardsPerHand: cph,
+        turnLimitSec: tls,
         players: [{ id: playerId, name: name.trim(), socketId: socket.id, ready:false, picked:[], pickedThisRound:false }],
         status:'lobby', phase:null, round:0, hands:{}, log:[],
       };
@@ -611,6 +654,8 @@ io.on('connection', (socket) => {
       const anyLeft = room.players.some(p => (room.hands[p.id]||[]).length > 0);
       if (anyLeft) passHands(room);
       else { room.round += 1; endPhaseOrDraft(room); }
+      if (room.status === 'drafting') startTurnTimer(room);
+      else clearTurnTimer(room);
     }
     emitRoom(room);
   });

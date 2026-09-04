@@ -5,7 +5,7 @@
   "occupations": [
     {
       "code": "B085",
-      "name": "#N/A",
+      "name": "Farm Hand",
       "nameEn": "Farm Hand",
       "ability": "번역 결과 없음",
       "abilityEn": "Once you have 4 field tiles arranged in a 2x2, you can use a \"Build Stables\" action to build a stable in the center of the 2x2. This stable provides room for a person but no animal.",
@@ -229,7 +229,7 @@
     },
     {
       "code": "B101",
-      "name": "#N/A",
+      "name": "Furniture Carpenter",
       "nameEn": "Furniture Carpenter",
       "ability": "번역 결과 없음",
       "abilityEn": "Each harvest, if any player (including you) owns the Joinery or an upgrade thereof, you can buy exactly 1 bonus point for 2 food.",
@@ -775,7 +775,7 @@
     },
     {
       "code": "B140",
-      "name": "#N/A",
+      "name": "Farmyard Worker",
       "nameEn": "Farmyard Worker",
       "ability": "번역 결과 없음",
       "abilityEn": "At the end of each work phase in which you placed at least 1 good on 1 of your farmyard spaces, you get 2 food.",
@@ -1181,7 +1181,7 @@
     },
     {
       "code": "B169",
-      "name": "#N/A",
+      "name": "Livestock Sustainer",
       "nameEn": "Livestock Sustainer",
       "ability": "번역 결과 없음",
       "abilityEn": "For each major improvement built by the other players, you can keep 1 animal on this card (max. 8). You can keep different types here.",
@@ -1195,7 +1195,7 @@
     },
     {
       "code": "B170",
-      "name": "#N/A",
+      "name": "Corral Builder",
       "nameEn": "Corral Builder",
       "ability": "번역 결과 없음",
       "abilityEn": "When the \"Pig Market\" and \"Cattle Market\" action space cards are each revealed (and placed on the round space), you can immediately fence exactly 1 farmyard space without playing wood.",
@@ -1209,7 +1209,7 @@
     },
     {
       "code": "B171",
-      "name": "#N/A",
+      "name": "Greenhouse Builder",
       "nameEn": "Greenhouse Builder",
       "ability": "번역 결과 없음",
       "abilityEn": "This is an action space for you only. It provides a choice of \"Fencing\", \"House Redevelopment\", or \"Vegetable Seeds\" if the corresponding action space is already in play.",
@@ -1223,7 +1223,7 @@
     },
     {
       "code": "B172",
-      "name": "#N/A",
+      "name": "Cattle Caregiver",
       "nameEn": "Cattle Caregiver",
       "ability": "번역 결과 없음",
       "abilityEn": "At the start of each round, if 3/4/5+ players each have at least 1 cattle, you get 1/2/3 food.",
@@ -1237,7 +1237,7 @@
     },
     {
       "code": "B173",
-      "name": "#N/A",
+      "name": "Sweeper",
       "nameEn": "Sweeper",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use an action space with the (meeple) symbol, place 1 food on this card. Once this game, you can turn this card face down to get the food on it.",
@@ -1251,7 +1251,7 @@
     },
     {
       "code": "B174",
-      "name": "#N/A",
+      "name": "Riverbank Gardener",
       "nameEn": "Riverbank Gardener",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use the \"Riverbank Forest\" accumulation space, you also get 1 vegetable.",
@@ -1265,7 +1265,7 @@
     },
     {
       "code": "B175",
-      "name": "#N/A",
+      "name": "Field Overseer",
       "nameEn": "Field Overseer",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time the other players harvest grain from at least 3/4/6 fields combined, you get 1 food/grain/vegetable.",
@@ -1279,7 +1279,7 @@
     },
     {
       "code": "B176",
-      "name": "#N/A",
+      "name": "Village Idiot",
       "nameEn": "Village Idiot",
       "ability": "번역 결과 없음",
       "abilityEn": "The Village Idiot is your lone occupation. Each time another player uses the \"Meeting Place\" action space, you get 1 wood and 1 food.",
@@ -1293,7 +1293,7 @@
     },
     {
       "code": "B177",
-      "name": "#N/A",
+      "name": "Stone Clawer",
       "nameEn": "Stone Clawer",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you plow at least 1 field, you also get 1 stone.",
@@ -1307,7 +1307,7 @@
     },
     {
       "code": "B178",
-      "name": "#N/A",
+      "name": "Tag-Along",
       "nameEn": "Tag-Along",
       "ability": "번역 결과 없음",
       "abilityEn": "Immediately after each time another player uses the \"Resource Market\" action space, you can also place a person there to take the action as well.",
@@ -1321,7 +1321,7 @@
     },
     {
       "code": "B179",
-      "name": "#N/A",
+      "name": "Wild Boar Hunter",
       "nameEn": "Wild Boar Hunter",
       "ability": "번역 결과 없음",
       "abilityEn": "In the returning home phase of each round, if at least 3 wood accumulation spaces are occupied, you can pay 1 wood to get 1 wild boar.",
@@ -1335,7 +1335,7 @@
     },
     {
       "code": "B180",
-      "name": "#N/A",
+      "name": "Game Teaser",
       "nameEn": "Game Teaser",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you take 1/2/3 food from a food accumulation space, you also get 1 cattle/wild boar/sheep.",
@@ -1631,7 +1631,7 @@
     },
     {
       "code": "B021",
-      "name": "#N/A",
+      "name": "Hayloft Barn",
       "nameEn": "Hayloft Barn",
       "ability": "<FOOD> 4개를 이 카드 위에 놓습니다. <GRAIN>을 1개 이상 가져올 때마다 이 카드 위에 있는 <FOOD> 1개를 가져옵니다. 이 카드의 음식이 모두 없어지면 즉시  빈 방이 없어도 가족 늘리기  행동을 할 수 있습니다.",
       "abilityEn": "Place 4 food on this card. Each time you obtain at least 1 grain, you also get 1 food from this card. Once it is empty, you get a \"Family Growth Even without Room\" action.",
@@ -1757,7 +1757,7 @@
     },
     {
       "code": "B030",
-      "name": "#N/A",
+      "name": "Wood Palisades",
       "nameEn": "Wood Palisades",
       "ability": "번역 결과 없음",
       "abilityEn": "Instead of a fence piece, you can place 2 wood from your supply on the fence spaces at the edge of your farmyard. These fence spaces with 2 wood are worth 1 bonus point.",
@@ -2345,7 +2345,7 @@
     },
     {
       "code": "B072",
-      "name": "#N/A",
+      "name": "Love for Agriculture",
       "nameEn": "Love for Agriculture",
       "ability": "번역 결과 없음",
       "abilityEn": "You can sow crops in pastures covering 1 or 2 farmyard spaces. If you do, these pastures are also considered fields and hold 1 and 2 animals less, respectively.",

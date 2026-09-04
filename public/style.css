@@ -58,6 +58,10 @@ h3{margin:12px 0 6px;font-size:14px}
 .error{background:#fbe2e2;border:1px solid #eabbbb;color:var(--danger);padding:7px 11px;border-radius:6px;margin:8px 0;font-size:13px}
 .hint{color:var(--muted);font-size:12px}
 .round-badge{display:inline-block;background:#3a6d3a;color:#fff;border-radius:12px;padding:2px 8px;font-size:11px;margin-left:6px}
+.turn-timer{display:inline-block;background:#4a67a3;color:#fff;border-radius:12px;padding:2px 10px;font-size:12px;margin-left:8px;font-weight:600}
+.turn-timer.warn{background:#c07a20;animation:pulse 1s infinite}
+.turn-timer.crit{background:#a12e2e;animation:pulse .5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .copy-btn{font-size:11px;padding:3px 8px}
 table{width:100%;border-collapse:collapse}
@@ -80,7 +84,10 @@ tr:hover td{background:#faf5e6}
 .tabs a{padding:5px 10px;border-radius:6px 6px 0 0;text-decoration:none;color:var(--ink);font-size:13px}
 .tabs a.on{background:var(--accent);color:#fff}
 textarea{width:100%;min-height:140px;font-family:ui-monospace,monospace;font-size:12px}
-.card-edit-row{display:grid;grid-template-columns:80px 1fr 2fr 160px 32px;gap:6px;align-items:center;padding:4px;border-bottom:1px solid #eee}
+.card-edit-row{display:grid;grid-template-columns:80px 1fr 2fr 160px 32px 24px;gap:6px;align-items:center;padding:4px;border-bottom:1px solid #eee}
 .card-edit-row input{padding:5px 7px;font-size:12px}
 .card-edit-row .code{font-family:monospace;color:var(--muted);font-size:12px}
 .card-edit-row img.mini{width:28px;height:28px;object-fit:cover;border-radius:3px;background:#eee}
+.card-edit-row .bgg-link{text-decoration:none;font-size:14px}
+.tpl-links a{display:inline-block;background:#eadfc4;padding:4px 8px;margin:2px;border-radius:5px;font-size:12px;text-decoration:none;color:var(--ink);border:1px solid var(--border)}
+.tpl-links a:hover{background:#d8c9a4}

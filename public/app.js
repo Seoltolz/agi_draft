@@ -11,6 +11,37 @@ let STATE=null, DECKS=[], ERROR='';
 
 async function loadDecks(){ const r=await fetch('/api/decks'); DECKS=await r.json(); }
 
+// ---------- Icon substitution ----------
+// Replace <TOKEN> tags in ability text with emoji icons + Korean label.
+const ICONS = {
+  FOOD:      { e: '🍞', ko: '음식' },
+  GRAIN:     { e: '🌾', ko: '곡식' },
+  WOOD:      { e: '🪵', ko: '나무' },
+  CLAY:      { e: '🧱', ko: '흙' },
+  STONE:     { e: '🪨', ko: '돌' },
+  REED:      { e: '🎋', ko: '갈대' },
+  SHEEP:     { e: '🐑', ko: '양' },
+  CATTLE:    { e: '🐄', ko: '소' },
+  PIG:       { e: '🐖', ko: '멧돼지' },
+  VEGETABLE: { e: '🥕', ko: '채소' },
+  VEG:       { e: '🥕', ko: '채소' },
+  SCORE:     { e: '⭐', ko: '승점' },
+  ARROW:     { e: '➡️', ko: '' },
+  BAKE:      { e: '🥐', ko: '빵굽기' },
+  STABLE:    { e: '🏚️', ko: '외양간' },
+  FENCE:     { e: '🚧', ko: '울타리' },
+  BEGGING:   { e: '🥺', ko: '구걸' },
+  FIELD:     { e: '🟫', ko: '밭' },
+};
+function iconize(text){
+  if (!text) return '';
+  return String(text).replace(/<([A-Z_]+)>/g, (_, tok)=>{
+    const it = ICONS[tok];
+    if (!it) return `<${tok}>`;
+    return `[${it.e}${it.ko?' '+it.ko:''}]`;
+  });
+}
+
 function h(tag, attrs={}, ...children){
   const el=document.createElement(tag);
   for (const [k,v] of Object.entries(attrs||{})){
@@ -63,10 +94,24 @@ async function renderLobby(){
   const savedRoom=store.get('lastRoom');
   const nameInput=h('input',{value:savedName, placeholder:'닉네임', oninput:e=>store.set('name',e.target.value)});
   const cphInput=h('input',{type:'number', value:'7', min:'3', max:'10', style:'width:70px'});
-  const selected=new Set();
+  // Turn time limit dropdown
+  const turnSel = h('select',{style:'width:auto'},
+    h('option',{value:'0'}, '무제한'),
+    h('option',{value:'5'}, '5초'),
+    h('option',{value:'10'}, '10초'),
+    h('option',{value:'15'}, '15초'),
+    h('option',{value:'20', selected:''}, '20초'),
+    h('option',{value:'30'}, '30초'),
+    h('option',{value:'60'}, '1분'),
+  );
+  // Default select A~E
+  const defaultSel = new Set(['a','b','c','d','e']);
+  const selected = new Set([...defaultSel].filter(id => DECKS.some(d=>d.id===id)));
+  const deckCards = [];
   const deckGrid=h('div',{class:'grid decks'},
     DECKS.map(d=>{
-      const card=h('div',{class:'deck-card', onclick:()=>{
+      const isSel = selected.has(d.id);
+      const card=h('div',{class:'deck-card'+(isSel?' selected':''), onclick:()=>{
         if (selected.has(d.id)) selected.delete(d.id); else selected.add(d.id);
         card.classList.toggle('selected');
       }},
@@ -74,15 +119,26 @@ async function renderLobby(){
         h('div',{}, h('small',{}, d.description||'')),
         h('div',{style:'margin-top:6px'}, h('small',{}, `직업 ${d.occupations} · 설비 ${d.minorImprovements}`)),
       );
+      deckCards.push({d, el:card});
       return card;
     })
   );
+  const selectAllBtn = h('button',{class:'secondary small', onclick:()=>{
+    for (const {d, el} of deckCards){ selected.add(d.id); el.classList.add('selected'); }
+  }}, '전체 선택');
+  const clearAllBtn = h('button',{class:'secondary small', onclick:()=>{
+    selected.clear(); for (const {el} of deckCards) el.classList.remove('selected');
+  }}, '전체 해제');
   const createBtn=h('button',{onclick:()=>{
     const name=nameInput.value.trim();
     if (!name) return showError('닉네임을 입력하세요.');
     if (selected.size===0) return showError('덱을 1개 이상 선택.');
     store.set('name', name);
-    socket.emit('createRoom', {name, deckIds:[...selected], cardsPerHand:Number(cphInput.value)||7}, r=>{
+    socket.emit('createRoom', {
+      name, deckIds:[...selected],
+      cardsPerHand:Number(cphInput.value)||7,
+      turnLimitSec: Number(turnSel.value)||0,
+    }, r=>{
       if (r?.error) return showError(r.error);
       store.set('lastRoom', {roomId:r.roomId, playerId:r.playerId});
       location.hash=`#/room/${r.roomId}`;
@@ -113,10 +169,15 @@ async function renderLobby(){
       h('div',{class:'row'},
         h('div',{style:'flex:1;min-width:180px'}, h('label',{},'닉네임'), nameInput),
         h('div',{}, h('label',{},'한손 카드 수'), cphInput),
+        h('div',{}, h('label',{},'한 턴 시간 제한'), turnSel),
       ),
-      h('h3',{}, '덱 선택 (여러 개 조합 가능)'),
+      h('div',{class:'row',style:'align-items:center;margin-top:8px'},
+        h('h3',{style:'margin:0'}, '덱 선택'),
+        selectAllBtn, clearAllBtn,
+        h('span',{class:'hint'}, `기본: A · B · C · D · E`),
+      ),
       deckGrid,
-      h('div',{class:'hint', style:'margin-top:6px'}, `총 카드 (선택된 덱) 여러 개 선택하면 풀이 커집니다. 한손 7장 × 4인 = 필요 28장. 부족시 방 시작 실패.`),
+      h('div',{class:'hint', style:'margin-top:6px'}, `한손 7장 × 4인 = 필요 28장. 부족시 방 시작 실패.`),
       h('div',{class:'row', style:'margin-top:12px'},
         createBtn,
         h('div',{style:'flex:1'}),
@@ -130,9 +191,11 @@ async function renderLobby(){
       h('ul',{},
         h('li',{}, '2~4명 실시간. 방 코드 / 초대 링크 공유.'),
         h('li',{}, '선택 덱들의 직업 카드 셔플 → 각자 N장 배분 → 1픽 → 손 옆으로 전달.'),
+        h('li',{}, '드래프트 종료까지 다른 플레이어의 픽 내용은 비공개.'),
+        h('li',{}, '한 턴 시간 제한 설정 시 시간 만료되면 랜덤 카드 자동 선택.'),
         h('li',{}, '직업 라운드 끝나면 자동 부속설비 라운드.'),
         h('li',{}, '드래프트 종료 → 서로 서로에게 별점 + MVP/dud 카드 투표.'),
-        h('li',{}, `투표 결과는 카드 티어/통계 페이지로 누적.`),
+        h('li',{}, `투표 결과는 카드 티어/통계 · 플레이어/덱 티어보드로 누적.`),
       ),
     )
   );
@@ -158,6 +221,22 @@ function renderRoom(roomId){
   app.append(h('div',{class:'card-panel'}, h('div',{class:'hint'}, '방 접속 중…')));
 }
 
+// Countdown timer helper
+let _countdownHandle = null;
+function startCountdown(deadline, el){
+  if (_countdownHandle) clearInterval(_countdownHandle);
+  function tick(){
+    const rem = Math.max(0, Math.round((deadline - Date.now())/1000));
+    if (!el.isConnected){ clearInterval(_countdownHandle); return; }
+    el.textContent = `⏱ ${rem}초`;
+    el.classList.toggle('warn', rem <= 5 && rem > 0);
+    el.classList.toggle('crit', rem <= 2);
+    if (rem <= 0){ clearInterval(_countdownHandle); }
+  }
+  tick();
+  _countdownHandle = setInterval(tick, 250);
+}
+
 socket.on('state', view=>{
   STATE=view;
   if (!location.hash.startsWith('#/room/')) return;
@@ -168,11 +247,14 @@ socket.on('state', view=>{
 
 function cardEl(c, opts={}){
   const {clickable=false, onClick=null, disabled=false} = opts;
-  const abil = c.ability ? h('div',{class:'ability'}, c.ability) : h('div',{class:'ability hint'}, '(능력 미입력)');
+  const abilText = iconize(c.ability);
+  const abil = c.ability
+    ? h('div',{class:'ability'}, abilText)
+    : h('div',{class:'ability hint'}, '(능력 미입력)');
   const meta = [];
-  if (c.cost && c.cost !== '-') meta.push('💰 '+c.cost);
+  if (c.cost && c.cost !== '-') meta.push('💰 '+iconize(c.cost));
   if (c.vp && c.vp !== '-') meta.push('★ '+c.vp+'점');
-  if (c.condition && c.condition !== '-') meta.push('조건: '+c.condition);
+  if (c.condition && c.condition !== '-') meta.push('조건: '+iconize(c.condition));
   const metaEl = meta.length ? h('div',{class:'meta'}, meta.join(' · ')) : null;
   const img = c.imageUrl
     ? h('div',{class:'imgwrap'},
@@ -180,13 +262,13 @@ function cardEl(c, opts={}){
         h('button',{class:'zoom', onclick:e=>{ e.stopPropagation(); openModal(h('div',{},
           h('h3',{}, `${c.name} (${c.code})`),
           h('img',{src:c.imageUrl}),
-          c.ability?h('p',{}, c.ability):null,
+          c.ability?h('p',{}, iconize(c.ability)):null,
         )); }}, '확대'))
     : null;
   return h('div',{
     class:'mini-card'+(disabled?' disabled':''),
     onclick: clickable && !disabled && onClick ? onClick : null,
-    title: `${c.name} (${c.code})${c.ability?'\n'+c.ability:''}`,
+    title: `${c.name} (${c.code})${c.ability?'\n'+abilText:''}`,
   }, img,
      h('div',{class:'code'}, `${c.code} · `, h('span',{class:'deck-tag'}, c.deckId||''),
        c.nameEn?h('span',{class:'en'}, ' · '+c.nameEn):null),
@@ -237,23 +319,32 @@ function drawRoom(view){
 
   if (room.status==='drafting' && me){
     const phaseLabel = room.phase==='occupations' ? '직업 (Occupations)' : '부속설비 (Minor Improvements)';
+    // Turn timer display
+    let timerEl = null;
+    if (room.turnDeadline){
+      timerEl = h('span',{class:'turn-timer', id:'turn-timer'}, '');
+      startCountdown(room.turnDeadline, timerEl);
+    } else if (room.turnLimitSec) {
+      timerEl = h('span',{class:'turn-timer'}, `⏱ ${room.turnLimitSec}초 제한`);
+    }
     app.append(h('div',{class:'card-panel'},
       h('h3',{},
         h('span',{class:'phase-tag'+(room.phase==='minors'?' min':'')}, phaseLabel),
         `라운드 ${room.round} / ${room.cardsPerHand}`,
         h('span',{class:'round-badge'}, me.hasPickedThisRound?'픽 완료':'대기 중'),
+        timerEl,
       ),
-      h('div',{class:'hint'}, '내 손에서 1장 클릭해 픽. 모두 픽하면 자동 진행.'),
+      h('div',{class:'hint'}, '내 손에서 1장 클릭해 픽. 모두 픽하면 자동 진행. 시간 초과 시 랜덤 자동 픽.'),
       h('h3',{}, `내 손 (${me.hand.length}장)`),
       h('div',{class:'grid cards'},
         (me.hand||[]).map(c => cardEl(c, {clickable:true, disabled:me.hasPickedThisRound,
           onClick:()=>socket.emit('pickCard',{cardCode:c.code}, r=>{ if(r?.error) showError(r.error); })}))),
-      h('h3',{}, '내 픽'),
+      h('h3',{}, `내 픽`),
       h('div',{class:'picked-list'},
         (me.picked||[]).map(c=>h('span',{class:'pick-pill '+(c.phase==='occupations'?'occ':'min'),
           onclick:()=>openModal(h('div',{}, h('h3',{}, `${c.name} (${c.code})`),
             c.imageUrl?h('img',{src:c.imageUrl}):null,
-            h('p',{}, c.ability||'(능력 미입력)')))}, c.name))),
+            h('p',{}, iconize(c.ability)||'(능력 미입력)')))}, c.name))),
     ));
     app.append(h('div',{class:'card-panel'},
       h('h3',{}, '다른 플레이어'),
@@ -483,6 +574,15 @@ async function renderAdminHome(){
     ),
     h('h3',{}, '📥 CSV 일괄 임포트'),
     h('div',{class:'hint'}, '헤더 필수: code,name,ability,imageUrl,deckId,kind. 매칭되는 코드는 UPDATE, 없으면 (deckId+kind+name 있을 때) ADD.'),
+    h('div',{class:'hint', style:'margin-top:6px'}, '📋 아래 템플릿을 다운로드해서 imageUrl 컬럼에만 URL 넣고 다시 붙여넣으면 됩니다. 각 카드에 BGG/Google 이미지 검색 링크가 미리 들어있음.'),
+    h('div',{class:'tpl-links'},
+      h('a',{href:'/templates/all_cards_image_template.csv', download:''}, '📄 전체 888장 템플릿'),
+      h('a',{href:'/templates/deck_a_image_template.csv', download:''}, 'A덱 (180장)'),
+      h('a',{href:'/templates/deck_b_image_template.csv', download:''}, 'B덱 (180장)'),
+      h('a',{href:'/templates/deck_c_image_template.csv', download:''}, 'C덱 (180장)'),
+      h('a',{href:'/templates/deck_d_image_template.csv', download:''}, 'D덱 (180장)'),
+      h('a',{href:'/templates/deck_e_image_template.csv', download:''}, 'E덱 (168장)'),
+    ),
     (()=>{
       const ta=h('textarea',{placeholder:'code,name,ability,imageUrl,deckId,kind\nE13,Axe,나무 자원 획득 시 보너스,https://...,e,minorImprovements'});
       const status=h('div',{class:'hint'});
@@ -517,9 +617,11 @@ async function renderAdminDeck(deckId){
       img.src=e.target.value; img.style.display=e.target.value?'':'none';
     }});
     const img=h('img',{class:'mini', src:c.imageUrl||'', style:c.imageUrl?'':'display:none', onerror:e=>e.target.style.display='none'});
+    const q = encodeURIComponent(`agricola ${c.nameEn||c.name}`);
+    const bgg = h('a',{href:`https://www.google.com/search?tbm=isch&q=${q}`, target:'_blank', class:'bgg-link', title:'구글 이미지 검색'}, '🔍');
     return h('div',{class:'card-edit-row'},
       h('span',{class:'code'}, c.code),
-      nameI, abI, imI, img);
+      nameI, abI, imI, img, bgg);
   }
   const occRows = deck.occupations.map(rowFor);
   const minRows = deck.minorImprovements.map(rowFor);

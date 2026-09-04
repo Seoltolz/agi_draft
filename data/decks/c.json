@@ -453,7 +453,7 @@
     },
     {
       "code": "C117",
-      "name": "#N/A",
+      "name": "Legworker",
       "nameEn": "Legworker",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use an action space that is orthogonally adjacent to another action space occupied by one of your people, you get 1 wood.",
@@ -859,7 +859,7 @@
     },
     {
       "code": "C146",
-      "name": "#N/A",
+      "name": "Workshop Assistant",
       "nameEn": "Workshop Assistant",
       "ability": "번역 결과 없음",
       "abilityEn": "Place a unique pair of different building resources on each of your improvements. Each time another player renovates, you may move one such pair to your supply.",
@@ -1181,7 +1181,7 @@
     },
     {
       "code": "C169",
-      "name": "#N/A",
+      "name": "Fast Mason",
       "nameEn": "Fast Mason",
       "ability": "번역 결과 없음",
       "abilityEn": "Immediately after each time you use a clay/stone accumulation space, you can renovate your house to clay/stone without paying reed.",
@@ -1195,7 +1195,7 @@
     },
     {
       "code": "C170",
-      "name": "#N/A",
+      "name": "Amateur Fencer",
       "nameEn": "Amateur Fencer",
       "ability": "번역 결과 없음",
       "abilityEn": "When you play this card, if you have no pastures yet, you can immediately fence exactly 1 space in your farmyard without paying wood for the fences.",
@@ -1209,7 +1209,7 @@
     },
     {
       "code": "C171",
-      "name": "#N/A",
+      "name": "Young Artist",
       "nameEn": "Young Artist",
       "ability": "번역 결과 없음",
       "abilityEn": "In the returning home phase of each round, you can pay 1 food to either take a \"Minor Improvement\" action or to draw 2 new minor improvements.",
@@ -1223,7 +1223,7 @@
     },
     {
       "code": "C172",
-      "name": "#N/A",
+      "name": "Field Counter",
       "nameEn": "Field Counter",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time another player plows a field, place 1 food on this card. Once this game, you can turn this card face down to get the food on it.",
@@ -1237,7 +1237,7 @@
     },
     {
       "code": "C173",
-      "name": "#N/A",
+      "name": "Top-Outer",
       "nameEn": "Top-Outer",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time the \"House Building\" action space on the game board extension is used, you get all of the food from the \"Traveling Players\" accumulation space.",
@@ -1265,7 +1265,7 @@
     },
     {
       "code": "C175",
-      "name": "#N/A",
+      "name": "Village Teacher",
       "nameEn": "Village Teacher",
       "ability": "번역 결과 없음",
       "abilityEn": "Immediately after each time you use a \"Lessons\" action space, if this is the 1st/2nd/3rd occupied Lessons action space that round, you get 1 food/grain/vegetable.",
@@ -1279,7 +1279,7 @@
     },
     {
       "code": "C176",
-      "name": "#N/A",
+      "name": "Cleanacre",
       "nameEn": "Cleanacre",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use the \"Farmland\", \"Cultivation\", or \"Farming Supplies\" action (the latter only being available with 6 players), you also get 2 clay.",
@@ -1293,7 +1293,7 @@
     },
     {
       "code": "C177",
-      "name": "#N/A",
+      "name": "Mountain Hiker",
       "nameEn": "Mountain Hiker",
       "ability": "번역 결과 없음",
       "abilityEn": "Immediately after each time you use an accumulation space on the game board extension, you can buy 1 stone for 1 food.",
@@ -1307,7 +1307,7 @@
     },
     {
       "code": "C178",
-      "name": "#N/A",
+      "name": "On-Site Reverend",
       "nameEn": "On-Site Reverend",
       "ability": "번역 결과 없음",
       "abilityEn": "At the start of each harvest, you get 1 building resource of your choice.",
@@ -1321,7 +1321,7 @@
     },
     {
       "code": "C179",
-      "name": "#N/A",
+      "name": "Bovine Pioneer",
       "nameEn": "Bovine Pioneer",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you create at least one new pasture from unfenced farmyard spaces you get 1 cattle.",
@@ -1335,7 +1335,7 @@
     },
     {
       "code": "C180",
-      "name": "#N/A",
+      "name": "Trapper",
       "nameEn": "Trapper",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time after you use a wood accumulation space, if this is the 2nd/3rd/4th occupied wood accumulation space that round, you can buy 1 sheep/wild boar/cattle for 1 food.",
@@ -2009,7 +2009,7 @@
     },
     {
       "code": "C048",
-      "name": "#N/A",
+      "name": "Farmstead",
       "nameEn": "Farmstead",
       "ability": "번역 결과 없음",
       "abilityEn": "After each turn in which you make at least one unused farmyard space used, you get 1 food.",
@@ -2177,7 +2177,7 @@
     },
     {
       "code": "C060",
-      "name": "#N/A",
+      "name": "Small Potter's Oven",
       "nameEn": "Small Potter's Oven",
       "ability": "번역 결과 없음",
       "abilityEn": "When you play this card, you immediately get 5 food. Each time before you get a \"Bake Bread\" action, you can build the \"Clay Oven\" or \"stone Oven\" major improvement.",
@@ -2205,7 +2205,7 @@
     },
     {
       "code": "C062",
-      "name": "#N/A",
+      "name": "Cooking Hearth Extension",
       "nameEn": "Cooking Hearth Extension",
       "ability": "번역 결과 없음",
       "abilityEn": "Each harvest, you can use each of your cooking improvements once to get double the amount of food for 1 animal or vegetable.",
@@ -2303,7 +2303,7 @@
     },
     {
       "code": "C069",
-      "name": "#N/A",
+      "name": "Land Consolidation",
       "nameEn": "Land Consolidation",
       "ability": "번역 결과 없음",
       "abilityEn": "At any time, you can exchange 3 grain in a field for 1 vegetable in that field.",
@@ -2345,7 +2345,7 @@
     },
     {
       "code": "C072",
-      "name": "#N/A",
+      "name": "Harvest Festival Planning",
       "nameEn": "Harvest Festival Planning",
       "ability": "번역 결과 없음",
       "abilityEn": "When you play this card, immediately carry out the field phase of the harvest. Afterwards, you get a \"Major or Minor Improvement\" action.",
@@ -2471,7 +2471,7 @@
     },
     {
       "code": "C081",
-      "name": "#N/A",
+      "name": "Material Hub",
       "nameEn": "Material Hub",
       "ability": "번역 결과 없음",
       "abilityEn": "Immediately place 2 of each building resource on this card. Each time any player (including you) takes at least 5 wood, 4 clay, 3 reed, or 3 stone, you get 1 of that building resource from this card.",

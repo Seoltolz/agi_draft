@@ -523,7 +523,7 @@
     },
     {
       "code": "D122",
-      "name": "#N/A",
+      "name": "Clay Seller",
       "nameEn": "Clay Seller",
       "ability": "번역 결과 없음",
       "abilityEn": "When you play this card, you immediately get 2 clay. At any time, but only once per round, you can buy 2 clay for 2 food.",
@@ -1041,7 +1041,7 @@
     },
     {
       "code": "D159",
-      "name": "#N/A",
+      "name": "Reed Seller",
       "nameEn": "Reed Seller",
       "ability": "번역 결과 없음",
       "abilityEn": "At any time, you can turn 1 reed into 3 food. Any other player can prevent this by buying the reed for 2 food from you. If multiple players are interested, choose one.",
@@ -1069,7 +1069,7 @@
     },
     {
       "code": "D161",
-      "name": "#N/A",
+      "name": "Cabbage Buyer",
       "nameEn": "Cabbage Buyer",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time any player (including you) renovates and the builds no/ 1 minor/ 1 major improvement, you can buy 1 vegetable for 3/2/1 food.",
@@ -1181,7 +1181,7 @@
     },
     {
       "code": "D169",
-      "name": "#N/A",
+      "name": "Plowsmith",
       "nameEn": "Plowsmith",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time another player takes at least 4 wood from an accumulation space, you can immediately pay 1 food to plow 1 field.",
@@ -1195,7 +1195,7 @@
     },
     {
       "code": "D170",
-      "name": "#N/A",
+      "name": "Fold Builder",
       "nameEn": "Fold Builder",
       "ability": "번역 결과 없음",
       "abilityEn": "This card is an action space for all. It provides a \"Build Fences\" action and then 1 sheep. If another player uses it, they must first pay you 1 food.",
@@ -1209,7 +1209,7 @@
     },
     {
       "code": "D171",
-      "name": "#N/A",
+      "name": "Senior Teacher",
       "nameEn": "Senior Teacher",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time another player pays food on a \"Lessons\" action space, you get exactly 1 of that food.",
@@ -1223,7 +1223,7 @@
     },
     {
       "code": "D172",
-      "name": "#N/A",
+      "name": "Putcher Maker",
       "nameEn": "Putcher Maker",
       "ability": "번역 결과 없음",
       "abilityEn": "At any time, you can exchange 1 reed for 2 food.",
@@ -1237,7 +1237,7 @@
     },
     {
       "code": "D173",
-      "name": "#N/A",
+      "name": "Town Clerk",
       "nameEn": "Town Clerk",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time a major improvement is built, place 1 food on this card. Once this game, you can turn this card face down to get the food on it.",
@@ -1251,7 +1251,7 @@
     },
     {
       "code": "D174",
-      "name": "#N/A",
+      "name": "Loess Gardener",
       "nameEn": "Loess Gardener",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use the \"Clay Pit\" accumulation space, you can also buy 1 vegetable for 1 food.",
@@ -1265,7 +1265,7 @@
     },
     {
       "code": "D175",
-      "name": "#N/A",
+      "name": "Countryman",
       "nameEn": "Countryman",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time any player (including you) takes a \"Renovation\" action on an action space, you can sow crops in exactly 1 field.",
@@ -1279,7 +1279,7 @@
     },
     {
       "code": "D176",
-      "name": "#N/A",
+      "name": "Woodshacker",
       "nameEn": "Woodshacker",
       "ability": "번역 결과 없음",
       "abilityEn": "In the work phase of each round, the first and the second time you use a wood accumulation space, you also get 1 and 2 clay respectively.",
@@ -1293,7 +1293,7 @@
     },
     {
       "code": "D177",
-      "name": "#N/A",
+      "name": "Graduate",
       "nameEn": "Graduate",
       "ability": "번역 결과 없음",
       "abilityEn": "When you play this card you immediately pay 1 food. If you do, you get 2 stone and 2 reed.",
@@ -1307,7 +1307,7 @@
     },
     {
       "code": "D178",
-      "name": "#N/A",
+      "name": "Substitute Teacher",
       "nameEn": "Substitute Teacher",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time all three \"Lessons\" action spaces are occupied, you can use this card with a person to get your choice of 1 building resource or 1 crop of each type.",
@@ -1321,7 +1321,7 @@
     },
     {
       "code": "D179",
-      "name": "#N/A",
+      "name": "Bullcatcher",
       "nameEn": "Bullcatcher",
       "ability": "번역 결과 없음",
       "abilityEn": "When both action spaces on round spaces 3 and 6 are occupied, you can use this card with a person to get 1 cattle and 2 food.",
@@ -1335,7 +1335,7 @@
     },
     {
       "code": "D180",
-      "name": "#N/A",
+      "name": "Part-Time Worker",
       "nameEn": "Part-Time Worker",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use an accumulation space with exactly 2/4/6 goods on it, you can leave 1/2/3 goods on the space. If you do, you get 1 sheep/wild boar/cattle.",
@@ -1687,7 +1687,7 @@
     },
     {
       "code": "D025",
-      "name": "#N/A",
+      "name": "Witches' Dance Floor",
       "nameEn": "Witches' Dance Floor",
       "ability": "번역 결과 없음",
       "abilityEn": "This card is a field that you can sow in, an occupation, and the \"Fireplace\" major improvement with all of its effects. You can play it only via a \"Minor Improvement\" action.",
@@ -2317,7 +2317,7 @@
     },
     {
       "code": "D070",
-      "name": "#N/A",
+      "name": "Straw Manure",
       "nameEn": "Straw Manure",
       "ability": "매 수확마다 농장 단계 직전에, 개인 창고의 <GRAIN> 1개를 내고, 최대 2곳까지의 채소밭에 각각 <VEGETABLE> 1개씩을 더할 수 있습니다.",
       "abilityEn": "Before the field phase of each harvest, you can pay 1 grain from your supply to add 1 vegetable to each of up to 2 vegetable fields.",

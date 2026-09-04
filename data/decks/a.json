@@ -397,7 +397,7 @@
     },
     {
       "code": "A113",
-      "name": "#N/A",
+      "name": "Heresy Teacher",
       "nameEn": "Heresy Teacher",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use a \"Lessons\" action space, you get 1 vegetable in each of your fields with at least 3 grain and no vegetable. Place the vegetable below the grain.",
@@ -1181,7 +1181,7 @@
     },
     {
       "code": "A169",
-      "name": "#N/A",
+      "name": "Off-Siter",
       "nameEn": "Off-Siter",
       "ability": "번역 결과 없음",
       "abilityEn": "Once the total printed building cost of all the major improvements you have is at least 9 building resources, this card provides room for 1 person for the rest of the game.",
@@ -1195,7 +1195,7 @@
     },
     {
       "code": "A170",
-      "name": "#N/A",
+      "name": "Hayward",
       "nameEn": "Hayward",
       "ability": "번역 결과 없음",
       "abilityEn": "You can build fences at any time without placing a person. (This is not considered a \"Build Fences\" action.)",
@@ -1209,7 +1209,7 @@
     },
     {
       "code": "A171",
-      "name": "#N/A",
+      "name": "Sidekick",
       "nameEn": "Sidekick",
       "ability": "번역 결과 없음",
       "abilityEn": "Immediately after each time you place a person on an action space card, you can pay 1 food to place another person on the card immediately left to it (and so on).",
@@ -1223,7 +1223,7 @@
     },
     {
       "code": "A172",
-      "name": "#N/A",
+      "name": "Boat Painter",
       "nameEn": "Boat Painter",
       "ability": "번역 결과 없음",
       "abilityEn": "At the end of each work phase, if both the \"Fishing\" and \"Traveling Players\" accumulation spaces are occupied, you get your choice of 1 grain or 2 food.",
@@ -1237,7 +1237,7 @@
     },
     {
       "code": "A173",
-      "name": "#N/A",
+      "name": "Clay Thief",
       "nameEn": "Clay Thief",
       "ability": "번역 결과 없음",
       "abilityEn": "Once this game, at the start of a work phase of your choice, you can turn this card face down to get all of the clay on the \"Hollow\" action space.",
@@ -1251,7 +1251,7 @@
     },
     {
       "code": "A174",
-      "name": "#N/A",
+      "name": "Master Hora",
       "nameEn": "Master Hora",
       "ability": "번역 결과 없음",
       "abilityEn": "Immediately before each time you place a person on an action space with the (meeple) symbol on the game board extension, you can buy 1 vegetable for 1 food.",
@@ -1265,7 +1265,7 @@
     },
     {
       "code": "A175",
-      "name": "#N/A",
+      "name": "Hollow Gardener",
       "nameEn": "Hollow Gardener",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you take at least 3 clay from the \"Hollow\" accumulation space, you also get 1 grain. If you take at least 6 clay from it, you also get 1 vegetable (instead of grain).",
@@ -1279,7 +1279,7 @@
     },
     {
       "code": "A176",
-      "name": "#N/A",
+      "name": "Wheelmaker",
       "nameEn": "Wheelmaker",
       "ability": "번역 결과 없음",
       "abilityEn": "When you play this card, if you have another occupation in play and more wood than all other players combined, you immediately get wood from the general supply until you have 15 wood.",
@@ -1293,7 +1293,7 @@
     },
     {
       "code": "A177",
-      "name": "#N/A",
+      "name": "Middleman",
       "nameEn": "Middleman",
       "ability": "번역 결과 없음",
       "abilityEn": "Place 1 stone and 1 food on all action spaces with the (meeple) symbol on the game board extension. Next time you place a person on them, you get the goods.",
@@ -1307,7 +1307,7 @@
     },
     {
       "code": "A178",
-      "name": "#N/A",
+      "name": "Carpenter's Boy",
       "nameEn": "Carpenter's Boy",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time another player builds a room, you immediately get 1 wood.",
@@ -1321,7 +1321,7 @@
     },
     {
       "code": "A179",
-      "name": "#N/A",
+      "name": "Mountain Shepherd",
       "nameEn": "Mountain Shepherd",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use either \"Quarry\" accumulation space, you immediately get an additional 1 sheep from the general supply.",
@@ -1335,7 +1335,7 @@
     },
     {
       "code": "A180",
-      "name": "#N/A",
+      "name": "Animal Brander",
       "nameEn": "Animal Brander",
       "ability": "번역 결과 없음",
       "abilityEn": "Each time you use the \"Animal Market\" action space, you can pay 1 food to use the same option twice (instead of once).",
@@ -1687,7 +1687,7 @@
     },
     {
       "code": "A025",
-      "name": "#N/A",
+      "name": "Bassinet",
       "nameEn": "Bassinet",
       "ability": "번역 결과 없음",
       "abilityEn": "Each work phase, you can place a(nother) person on the first non-accumulating action space used by any player (including you), as long as there is only 1 person on that space.",
@@ -2191,7 +2191,7 @@
     },
     {
       "code": "A061",
-      "name": "#N/A",
+      "name": "Winnowing Fan",
       "nameEn": "Winnowing Fan",
       "ability": "번역 결과 없음",
       "abilityEn": "After the field phase of each harvest, you can use a baking improvement but only to turn exactly 1 grain into food. (This is not considered a \"Bake Bread\" action.)",
