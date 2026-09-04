@@ -45,6 +45,8 @@ function route(){
   const hash=location.hash||'#/'; ERROR='';
   if (hash.startsWith('#/history/')) return renderHistoryDetail(hash.slice('#/history/'.length));
   if (hash.startsWith('#/history')) return renderHistoryList();
+  if (hash.startsWith('#/players')) return renderPlayers();
+  if (hash.startsWith('#/decks-tier')) return renderDeckTier();
   if (hash.startsWith('#/stats')) return renderStats();
   if (hash.startsWith('#/admin/')) return renderAdminDeck(hash.slice('#/admin/'.length));
   if (hash.startsWith('#/admin')) return renderAdminHome();
@@ -167,6 +169,11 @@ socket.on('state', view=>{
 function cardEl(c, opts={}){
   const {clickable=false, onClick=null, disabled=false} = opts;
   const abil = c.ability ? h('div',{class:'ability'}, c.ability) : h('div',{class:'ability hint'}, '(능력 미입력)');
+  const meta = [];
+  if (c.cost && c.cost !== '-') meta.push('💰 '+c.cost);
+  if (c.vp && c.vp !== '-') meta.push('★ '+c.vp+'점');
+  if (c.condition && c.condition !== '-') meta.push('조건: '+c.condition);
+  const metaEl = meta.length ? h('div',{class:'meta'}, meta.join(' · ')) : null;
   const img = c.imageUrl
     ? h('div',{class:'imgwrap'},
         h('img',{src:c.imageUrl, loading:'lazy', onerror:e=>e.target.style.display='none'}),
@@ -181,8 +188,10 @@ function cardEl(c, opts={}){
     onclick: clickable && !disabled && onClick ? onClick : null,
     title: `${c.name} (${c.code})${c.ability?'\n'+c.ability:''}`,
   }, img,
-     h('div',{class:'code'}, `${c.code} · `, h('span',{class:'deck-tag'}, c.deckId||'')),
+     h('div',{class:'code'}, `${c.code} · `, h('span',{class:'deck-tag'}, c.deckId||''),
+       c.nameEn?h('span',{class:'en'}, ' · '+c.nameEn):null),
      h('div',{class:'name'}, c.name),
+     metaEl,
      abil,
   );
 }
@@ -248,11 +257,9 @@ function drawRoom(view){
     ));
     app.append(h('div',{class:'card-panel'},
       h('h3',{}, '다른 플레이어'),
+      h('div',{class:'hint'}, '🔒 드래프트가 끝날 때까지 다른 사람이 무엇을 픽했는지 공개되지 않습니다.'),
       others.map(o=>h('div',{style:'margin-bottom:8px'},
-        h('div',{}, h('strong',{}, o.name), ` · 손 ${o.handSize}장 · ${o.hasPickedThisRound?'픽 완료':'선택 중'}`),
-        h('div',{class:'picked-list'},
-          (o.picked||[]).map(c=>h('span',{class:'pick-pill '+(c.phase==='occupations'?'occ':'min')}, c.name))
-        ),
+        h('div',{}, h('strong',{}, o.name), ` · 손 ${o.handSize}장 · ${o.hasPickedThisRound?'✅ 픽 완료':'⏳ 선택 중'} · 픽 누적 ${o.pickedCount||0}장`),
       )),
     ));
   }
@@ -266,14 +273,16 @@ function drawRoom(view){
     }
   }
 
-  // Log always
-  app.append(h('div',{class:'card-panel'},
-    h('h3',{}, '픽 로그'),
-    h('div',{class:'log'},
-      (log||[]).slice().reverse().map(l=>h('div',{class:'line'},
-        `[${l.phase==='occupations'?'직업':'설비'} R${l.round}] `,
-        h('strong',{}, l.playerName), ` → ${l.card.name} (${l.card.code}, ${l.card.deckId})`))
-    )));
+  // Log only visible after draft is finished
+  if (room.status === 'finished') {
+    app.append(h('div',{class:'card-panel'},
+      h('h3',{}, '픽 로그 (드래프트 종료 · 전체 공개)'),
+      h('div',{class:'log'},
+        (log||[]).slice().reverse().map(l=>h('div',{class:'line'},
+          `[${l.phase==='occupations'?'직업':'설비'} R${l.round}] `,
+          h('strong',{}, l.playerName), ` → ${l.card.name} (${l.card.code}, ${l.card.deckId})`))
+      )));
+  }
 }
 
 function renderVoting(room, me, others){
@@ -543,6 +552,83 @@ async function renderAdminDeck(deckId){
     occRows.length ? h('div',{}, occRows) : h('div',{class:'hint'}, '이 덱에 직업 카드 없음.'),
     h('h3',{}, `부속설비 (${deck.minorImprovements.length}장)`),
     minRows.length ? h('div',{}, minRows) : h('div',{class:'hint'}, '이 덱에 설비 카드 없음.'),
+  ));
+}
+
+// ---------- Player Tier Board ----------
+async function renderPlayers(){
+  app.innerHTML='';
+  const r=await fetch('/api/players'); const rows=await r.json();
+  const N = rows.length;
+  function tier(idx){
+    if (idx < N*0.10) return 'S';
+    if (idx < N*0.30) return 'A';
+    if (idx < N*0.70) return 'B';
+    if (idx < N*0.90) return 'C';
+    return 'D';
+  }
+  rows.forEach((r,i)=>{ r.tier=tier(i); });
+  app.append(h('div',{class:'card-panel'},
+    h('h2',{}, '🏆 플레이어 티어보드'),
+    h('div',{class:'hint'}, `총 ${N}명 · 종료된 드래프트에서 받은 평균 별점 + MVP - dud + 승리 횟수를 종합한 점수 기준. 점수 = 평균별점×2 + MVP×0.5 - dud×0.5 + 승리×1.`),
+    N===0 ? h('div',{class:'hint', style:'margin-top:12px'}, '아직 완료된 드래프트가 없음. 방을 만들어 드래프트+투표를 마치면 이 표에 누적됨.') :
+    h('table',{class:'stats'},
+      h('thead',{}, h('tr',{},
+        h('th',{},'티어'), h('th',{},'순위'), h('th',{},'닉네임'),
+        h('th',{},'드래프트'), h('th',{},'평균★'), h('th',{},'MVP'), h('th',{},'dud'),
+        h('th',{},'승리'), h('th',{},'종합점수')
+      )),
+      h('tbody',{}, rows.map((p,i)=>h('tr',{class:'tier-'+p.tier},
+        h('td',{}, p.tier),
+        h('td',{}, String(i+1)),
+        h('td',{}, h('strong',{}, p.name)),
+        h('td',{}, String(p.drafts||0)),
+        h('td',{}, (p.avgRating||0).toFixed(2)+'★'),
+        h('td',{}, String(p.mvpCount||0)),
+        h('td',{}, String(p.dudCount||0)),
+        h('td',{}, String(p.wins||0)),
+        h('td',{}, (p.score||0).toFixed(2))
+      )))
+    )
+  ));
+}
+
+// ---------- Deck Tier Board ----------
+async function renderDeckTier(){
+  app.innerHTML='';
+  const r=await fetch('/api/deck-stats'); const rows=await r.json();
+  const N = rows.length;
+  function tier(idx){
+    if (N<=2) return idx===0?'S':'B';
+    if (idx < N*0.15) return 'S';
+    if (idx < N*0.40) return 'A';
+    if (idx < N*0.70) return 'B';
+    if (idx < N*0.90) return 'C';
+    return 'D';
+  }
+  rows.forEach((r,i)=>{ r.tier=tier(i); });
+  app.append(h('div',{class:'card-panel'},
+    h('h2',{}, '📚 덱 티어보드'),
+    h('div',{class:'hint'}, '덱별 카드들의 평균 점수 · 픽률로 정렬. 어느 확장 덱이 가장 강력한지 누적 데이터 기반 판정.'),
+    N===0 ? h('div',{class:'hint',style:'margin-top:12px'}, '아직 데이터 없음. 드래프트+투표를 마치면 카드에 점수가 매겨지고 덱 랭킹이 잡힘.') :
+    h('table',{class:'stats'},
+      h('thead',{}, h('tr',{},
+        h('th',{},'티어'), h('th',{},'순위'), h('th',{},'덱'),
+        h('th',{},'카드 수'), h('th',{},'총 등장'), h('th',{},'총 픽'),
+        h('th',{},'픽률'), h('th',{},'MVP-dud'), h('th',{},'평균 카드 점수')
+      )),
+      h('tbody',{}, rows.map((d,i)=>h('tr',{class:'tier-'+d.tier},
+        h('td',{}, d.tier),
+        h('td',{}, String(i+1)),
+        h('td',{}, h('strong',{}, d.deckName)),
+        h('td',{}, String(d.cards||0)),
+        h('td',{}, String(d.seen||0)),
+        h('td',{}, String(d.picked||0)),
+        h('td',{}, ((d.pickRate||0)*100).toFixed(0)+'%'),
+        h('td',{}, String(d.mvpNet||0)),
+        h('td',{}, (d.avgCardScore||0).toFixed(2))
+      )))
+    )
   ));
 }
 
