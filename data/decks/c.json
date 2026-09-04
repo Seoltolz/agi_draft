@@ -1,0 +1,153 @@
+{
+  "id": "c",
+  "name": "C-Deck (Complex Deck)",
+  "description": "복잡 확장 (C번). 조합 카드.",
+  "occupations": [
+    {
+      "code": "C01",
+      "name": "Governor",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C02",
+      "name": "Weekend Worker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C03",
+      "name": "Jack-of-all-trades",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C04",
+      "name": "Teacher of Nations",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C05",
+      "name": "Hero",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C06",
+      "name": "Fortune Teller",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C07",
+      "name": "Bureaucrat",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C08",
+      "name": "Bagpiper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C09",
+      "name": "Only Child",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C10",
+      "name": "Informer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C11",
+      "name": "Robber",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C12",
+      "name": "Nicholas",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ],
+  "minorImprovements": [
+    {
+      "code": "C13",
+      "name": "Golden Hands",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C14",
+      "name": "School",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C15",
+      "name": "Beer Festival",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C16",
+      "name": "Wagenburg",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C17",
+      "name": "Chapel",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C18",
+      "name": "Hop Field",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C19",
+      "name": "Wine Cellar",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C20",
+      "name": "Golem",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C21",
+      "name": "Venus Figure",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C22",
+      "name": "Bible",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C23",
+      "name": "Hunger Wall",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "C24",
+      "name": "Five-year Plan",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ]
+}

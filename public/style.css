@@ -1,0 +1,84 @@
+:root{
+  --bg:#f4efe3; --paper:#fffdf7; --ink:#2b2318; --accent:#7a4b1e;
+  --accent2:#3a6d3a; --muted:#8a7f6d; --danger:#a12e2e; --border:#d8cdb4;
+  --shadow: 0 2px 6px rgba(60,40,10,0.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:14px}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#e9dcc0;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:8px}
+header h1{margin:0;font-size:18px}
+header a{color:var(--ink);text-decoration:none}
+header nav a{margin-left:12px;font-size:13px;color:var(--accent)}
+main{max-width:1200px;margin:0 auto;padding:18px}
+footer{padding:14px;text-align:center;color:var(--muted)}
+button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px}
+button.secondary{background:#eadfc4;color:var(--ink);border:1px solid var(--border)}
+button.danger{background:var(--danger)}
+button.small{padding:4px 8px;font-size:12px}
+button:disabled{opacity:.5;cursor:not-allowed}
+input,select,textarea{padding:7px 9px;border:1px solid var(--border);border-radius:6px;background:var(--paper);font-family:inherit;font-size:13px;width:100%}
+input[type=number]{width:auto}
+label{font-size:13px;color:var(--muted);display:block;margin-bottom:3px}
+.card-panel{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
+h2{margin:0 0 10px;font-size:17px;color:var(--accent)}
+h3{margin:12px 0 6px;font-size:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.grid{display:grid;gap:10px}
+.grid.decks{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.grid.cards{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.deck-card{border:1px solid var(--border);border-radius:8px;padding:10px;background:var(--paper);cursor:pointer}
+.deck-card.selected{outline:2px solid var(--accent);background:#fff8e6}
+.deck-card small{color:var(--muted)}
+.players{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.player-chip{padding:5px 10px;border-radius:14px;background:#eee0c1;font-size:12px;border:1px solid var(--border)}
+.player-chip.me{background:#c8dfc8}
+.picked-dot{color:var(--accent2);margin-left:4px}
+.mini-card{border:1px solid var(--border);border-radius:8px;padding:8px;background:var(--paper);cursor:pointer;transition:transform .1s;position:relative;display:flex;flex-direction:column;gap:4px;min-height:120px}
+.mini-card:hover{transform:translateY(-2px);border-color:var(--accent);z-index:5}
+.mini-card .code{font-size:10px;color:var(--muted)}
+.mini-card .name{font-weight:600;font-size:13px}
+.mini-card .deck-tag{font-size:10px;color:var(--accent);text-transform:uppercase}
+.mini-card .ability{font-size:11px;color:#5a4f3d;line-height:1.4;max-height:64px;overflow:hidden}
+.mini-card img{width:100%;height:80px;object-fit:cover;border-radius:4px;background:#eee}
+.mini-card.disabled{opacity:.35;pointer-events:none;filter:grayscale(60%)}
+.mini-card .imgwrap{position:relative}
+.mini-card .imgwrap .zoom{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.4);color:#fff;border:none;font-size:10px;padding:2px 4px;border-radius:4px;cursor:zoom-in}
+.picked-list{display:flex;gap:5px;flex-wrap:wrap}
+.pick-pill{background:#eae0c8;border:1px solid var(--border);border-radius:12px;padding:3px 7px;font-size:11px;cursor:default}
+.pick-pill.occ{background:#e7d5b3}
+.pick-pill.min{background:#d5e2d2}
+.pick-pill.mvp{outline:2px solid gold}
+.pick-pill.dud{outline:2px solid var(--danger);opacity:.7}
+.phase-tag{display:inline-block;padding:2px 7px;border-radius:10px;font-size:11px;background:var(--accent);color:#fff;margin-right:5px}
+.phase-tag.min{background:var(--accent2)}
+.log{max-height:200px;overflow:auto;font-size:12px;background:#f8f2e2;border:1px solid var(--border);border-radius:6px;padding:8px}
+.log .line{border-bottom:1px dashed #ddd;padding:2px 0}
+.error{background:#fbe2e2;border:1px solid #eabbbb;color:var(--danger);padding:7px 11px;border-radius:6px;margin:8px 0;font-size:13px}
+.hint{color:var(--muted);font-size:12px}
+.round-badge{display:inline-block;background:#3a6d3a;color:#fff;border-radius:12px;padding:2px 8px;font-size:11px;margin-left:6px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.copy-btn{font-size:11px;padding:3px 8px}
+table{width:100%;border-collapse:collapse}
+th,td{border-bottom:1px solid var(--border);padding:6px 8px;font-size:13px;text-align:left;vertical-align:top}
+th{background:#efe4c9}
+tr:hover td{background:#faf5e6}
+.tier-S{background:#ffe5c2;border-left:6px solid #d97706}
+.tier-A{background:#fff5df;border-left:6px solid #b58517}
+.tier-B{background:#eef2e5;border-left:6px solid #587a2b}
+.tier-C{background:#e8ecf3;border-left:6px solid #506a90}
+.tier-D{background:#f0e6e6;border-left:6px solid #8a5555}
+.rate{display:inline-flex;gap:2px}
+.rate button{padding:2px 6px;background:#eadfc4;color:var(--ink);border:1px solid var(--border);font-size:12px;font-weight:500}
+.rate button.on{background:var(--accent);color:#fff}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal{background:var(--paper);padding:16px;border-radius:10px;max-width:600px;max-height:90vh;overflow:auto;position:relative}
+.modal img{max-width:100%;max-height:70vh;display:block;margin:auto}
+.modal .close{position:absolute;top:6px;right:8px;background:none;border:none;font-size:22px;color:var(--ink);cursor:pointer;font-weight:700}
+.tabs{display:flex;gap:8px;margin-bottom:10px;border-bottom:2px solid var(--border);padding-bottom:4px}
+.tabs a{padding:5px 10px;border-radius:6px 6px 0 0;text-decoration:none;color:var(--ink);font-size:13px}
+.tabs a.on{background:var(--accent);color:#fff}
+textarea{width:100%;min-height:140px;font-family:ui-monospace,monospace;font-size:12px}
+.card-edit-row{display:grid;grid-template-columns:80px 1fr 2fr 160px 32px;gap:6px;align-items:center;padding:4px;border-bottom:1px solid #eee}
+.card-edit-row input{padding:5px 7px;font-size:12px}
+.card-edit-row .code{font-family:monospace;color:var(--muted);font-size:12px}
+.card-edit-row img.mini{width:28px;height:28px;object-fit:cover;border-radius:3px;background:#eee}

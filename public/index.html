@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>아그리콜라 드래프트</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <h1><a href="#/">아그리콜라 드래프트</a></h1>
+  <nav>
+    <a href="#/">로비</a>
+    <a href="#/stats">티어/통계</a>
+    <a href="#/history">기록</a>
+    <a href="#/admin">카드 관리</a>
+  </nav>
+</header>
+<main id="app"></main>
+<footer>
+  <small>로컬 친구 모임용 프라이빗 미니게임 · 카드 능력/이미지는 관리 페이지에서 편집</small>
+</footer>
+<!-- socket.io: local first, CDN fallback -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  if (typeof io === 'undefined'){
+    document.write('<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"><\/script>');
+  }
+</script>
+<script src="/app.js"></script>
+</body>
+</html>

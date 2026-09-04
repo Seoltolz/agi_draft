@@ -1,0 +1,788 @@
+{
+  "id": "m",
+  "name": "M-Deck (Farmers of the Moor)",
+  "description": "황무지 확장 (M번).",
+  "occupations": [],
+  "minorImprovements": [
+    {
+      "code": "M001",
+      "name": "Peat-charcoal Kiln",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M002",
+      "name": "Forester's Lodge",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M003",
+      "name": "Riding Stables",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M004/005",
+      "name": "Horse Slaughterhouse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M006",
+      "name": "Museum of the Moors",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M007",
+      "name": "Furnace",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M008",
+      "name": "Heating Stove",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M009",
+      "name": "Village Church",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M010",
+      "name": "Furniture Stall",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M011",
+      "name": "Ceramics Stall",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M012",
+      "name": "Basket Stall",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M013/014",
+      "name": "Cookhouse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M015",
+      "name": "Fallow Fields",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M016",
+      "name": "Peat Burn-off",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M017",
+      "name": "Cattle Collar",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M018",
+      "name": "Surveyor's Map",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M019",
+      "name": "Sowing Machine",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M020",
+      "name": "Peat Fertilizer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M021",
+      "name": "Peat Ash Fertilizer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M022",
+      "name": "Nosebag",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M023",
+      "name": "Ploughhorse Market",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M024",
+      "name": "Large Livestock Market",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M025",
+      "name": "Special Pasture",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M026",
+      "name": "Home Wood",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M027",
+      "name": "Horse Trough",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M028",
+      "name": "Open Grill",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M029",
+      "name": "Pot Roast Recipe",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M030",
+      "name": "Grain Distillery",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M031",
+      "name": "Forest Kindergarten",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M032",
+      "name": "Pheromones",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M033",
+      "name": "Malthouse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M034",
+      "name": "Chimney Hood",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M035",
+      "name": "Village Hall",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M036",
+      "name": "Healing Clay",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M037",
+      "name": "Arid Field",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M038",
+      "name": "Birthing House",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M039",
+      "name": "Barge",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M040",
+      "name": "Peat Barge",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M041",
+      "name": "Peat Sled",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M042",
+      "name": "Peat Iron",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M043",
+      "name": "Spinning Mill",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M044",
+      "name": "Built-in Oven",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M045",
+      "name": "Coal Seam",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M046",
+      "name": "Oven Damper",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M047",
+      "name": "Draughthorses",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M048",
+      "name": "Forest Path",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M049",
+      "name": "Moor Birch Tree",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M050",
+      "name": "River Clay",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M051",
+      "name": "Willow Bank",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M052",
+      "name": "Stone Quarry",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M053",
+      "name": "Hardware Store",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M054",
+      "name": "Basic Supplies",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M055",
+      "name": "Advance Payment",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M056",
+      "name": "Peat Moss",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M057",
+      "name": "Farmhands' Quarters",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M058",
+      "name": "Living History Museum",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M059",
+      "name": "Register of Craftsmen",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M060",
+      "name": "Tinker",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M061",
+      "name": "Workbench",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M062",
+      "name": "Taps",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M063",
+      "name": "Tool Shed",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M064",
+      "name": "Farm Extension",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M065",
+      "name": "Thicket",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M066",
+      "name": "Swamp",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M067",
+      "name": "Clear Felling",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M068",
+      "name": "Reforestation",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M069",
+      "name": "Bog Body",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M070",
+      "name": "Administration",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M071",
+      "name": "Leather Saddle",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M072",
+      "name": "Wedding Coach",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M073",
+      "name": "Forest Hut",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M074",
+      "name": "Farm Cart",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M075",
+      "name": "Moor Fire",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M076",
+      "name": "Deep Plough",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M077",
+      "name": "Wild Fields",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M078",
+      "name": "No-Till Farming",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M079",
+      "name": "Nature's Fertilizer",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M080",
+      "name": "Peat Hut",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M081",
+      "name": "Flatboat",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M082",
+      "name": "Livestock Market",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M083",
+      "name": "Cattle Stall",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M084",
+      "name": "Night Pasture",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M085",
+      "name": "Nature Reserve",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M086",
+      "name": "Building Plan",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M087",
+      "name": "Horse Butcher",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M088",
+      "name": "Butcher's Block",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M089",
+      "name": "Fire Brigade",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M090",
+      "name": "Wild Harvest",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M091",
+      "name": "Fish Smokehouse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M092",
+      "name": "Loan",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M093",
+      "name": "Fallow Land",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M094",
+      "name": "Hay Wagon",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M095",
+      "name": "Peat Bath",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M096",
+      "name": "Edge of the Forest",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M097",
+      "name": "Ecological Niche",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M098",
+      "name": "Winter Storehouse",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M099",
+      "name": "Lawn Turf",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M100",
+      "name": "Firewood",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M101",
+      "name": "Peat Pellets",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M102",
+      "name": "Fuel Storage",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M103",
+      "name": "Bog Pony",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M104",
+      "name": "Drying Field",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M105",
+      "name": "Peat-cutting Expedition",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M106",
+      "name": "Riverside Woods",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M107",
+      "name": "Timber Mill",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M108",
+      "name": "Oak Bark",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M109",
+      "name": "Loam",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M110",
+      "name": "Alder Swamp",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M111",
+      "name": "Stone Wagon",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M112",
+      "name": "Wheelbarrow",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M113",
+      "name": "Peat Boat",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M114",
+      "name": "Household Inventory",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M115",
+      "name": "Village Shop",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M116",
+      "name": "Hearth Brush",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M117",
+      "name": "Pastoral Letter",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M118",
+      "name": "Co-operative Store",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M119",
+      "name": "Out on the Wallaby",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M120",
+      "name": "Chamber of Commerce",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M121",
+      "name": "Routine Work",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M122",
+      "name": "Peat-Cutting Rights",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M123",
+      "name": "Agricultural Implement",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M124",
+      "name": "Moor Enclosures",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M125",
+      "name": "Bog Forest",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M126",
+      "name": "Forest Swamp",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M127",
+      "name": "Tree Nursery",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M128",
+      "name": "Land Parcel",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M129",
+      "name": "Stock-breeding Prize",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M130",
+      "name": "Family Burial Plot",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M131",
+      "name": "Moor Archaeology",
+      "ability": "",
+      "imageUrl": ""
+    },
+    {
+      "code": "M132",
+      "name": "Church",
+      "ability": "",
+      "imageUrl": ""
+    }
+  ]
+}
