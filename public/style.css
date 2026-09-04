@@ -84,6 +84,23 @@ tr:hover td{background:#faf5e6}
 .tabs a{padding:5px 10px;border-radius:6px 6px 0 0;text-decoration:none;color:var(--ink);font-size:13px}
 .tabs a.on{background:var(--accent);color:#fff}
 textarea{width:100%;min-height:140px;font-family:ui-monospace,monospace;font-size:12px}
+.save-badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600}
+.save-badge.pending{background:#eadfc4;color:var(--ink)}
+.save-badge.ok{background:#3a6d3a;color:#fff}
+.save-line{font-size:12px;color:var(--muted)}
+.save-line.ok{color:var(--accent2);font-weight:600}
+.save-line.err{color:var(--danger)}
+.vote-progress{background:#f8f2e2;border:1px solid var(--border);border-radius:6px;padding:8px;margin:8px 0}
+.vote-prog-row{display:flex;gap:10px;padding:4px 6px;border-bottom:1px dashed var(--border);flex-wrap:wrap;align-items:center;font-size:12px}
+.vote-prog-row:last-child{border-bottom:none}
+.vote-prog-row.done{background:#e6efd8}
+.vote-prog-row.me{background:#e0ecf6}
+.vote-prog-row .name{font-weight:700;min-width:80px}
+.vote-prog-row .stat{color:var(--muted)}
+.vote-prog-row .st{margin-left:auto;font-weight:600}
+.vote-target{margin-bottom:14px;border:2px solid var(--border);border-radius:8px;padding:10px;background:#fff}
+.vote-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.my-score-badge{font-size:12px;color:var(--accent2);font-weight:600}
 .card-edit-row{display:grid;grid-template-columns:80px 1fr 2fr 160px 32px 24px;gap:6px;align-items:center;padding:4px;border-bottom:1px solid #eee}
 .card-edit-row input{padding:5px 7px;font-size:12px}
 .card-edit-row .code{font-family:monospace;color:var(--muted);font-size:12px}

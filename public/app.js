@@ -279,7 +279,7 @@ function cardEl(c, opts={}){
 }
 
 function drawRoom(view){
-  const {room, me, others, log, voting}=view;
+  const {room, me, others, log, voting, votingProgress}=view;
   const isHost = me && room.hostId===me.id;
   app.innerHTML='';
   const roomHeader=h('div',{class:'card-panel'},
@@ -327,6 +327,9 @@ function drawRoom(view){
     } else if (room.turnLimitSec) {
       timerEl = h('span',{class:'turn-timer'}, `⏱ ${room.turnLimitSec}초 제한`);
     }
+    const undoBtn = me.hasPickedThisRound && me.lastPickCode ? h('button',{class:'secondary small', onclick:()=>{
+      socket.emit('undoPick', {}, r=>{ if (r?.error) showError(r.error); });
+    }}, '↶ 방금 픽 취소') : null;
     app.append(h('div',{class:'card-panel'},
       h('h3',{},
         h('span',{class:'phase-tag'+(room.phase==='minors'?' min':'')}, phaseLabel),
@@ -334,7 +337,8 @@ function drawRoom(view){
         h('span',{class:'round-badge'}, me.hasPickedThisRound?'픽 완료':'대기 중'),
         timerEl,
       ),
-      h('div',{class:'hint'}, '내 손에서 1장 클릭해 픽. 모두 픽하면 자동 진행. 시간 초과 시 랜덤 자동 픽.'),
+      h('div',{class:'hint'}, '내 손에서 1장 클릭해 픽. 모두 픽하면 자동 진행. 시간 초과 시 랜덤 자동 픽. 실수했으면 아래 취소 버튼.'),
+      undoBtn ? h('div',{style:'margin:6px 0'}, undoBtn) : null,
       h('h3',{}, `내 손 (${me.hand.length}장)`),
       h('div',{class:'grid cards'},
         (me.hand||[]).map(c => cardEl(c, {clickable:true, disabled:me.hasPickedThisRound,
@@ -381,69 +385,161 @@ function renderVoting(room, me, others){
   const scores = {...(myVotes.playerScores||{})};
   const mvpSet = new Set(myVotes.mvpCards||[]);
   const dudSet = new Set(myVotes.dudCards||[]);
+  const targetsNeeded = room.players.length - 1;
+  const savedLine = h('div',{class:'save-line'},'');
+  function updateSaved(txt, cls){
+    savedLine.textContent = txt;
+    savedLine.className = 'save-line'+(cls?' '+cls:'');
+  }
+  function myProgress(){
+    const done = Object.keys(scores).length;
+    return `${done} / ${targetsNeeded}`;
+  }
+  const progressBadge = h('span',{class:'save-badge'}, '');
+  function updateProgress(){
+    const done = Object.keys(scores).length;
+    progressBadge.textContent = `내 별점 진행: ${done}/${targetsNeeded}`;
+    progressBadge.className = 'save-badge' + (done>=targetsNeeded ? ' ok':' pending');
+  }
   const submit = ()=>{
+    updateSaved('💾 저장 중...', '');
     socket.emit('vote', {
       playerScores:scores, mvpCards:[...mvpSet], dudCards:[...dudSet]
-    }, r=>{ if (r?.error) showError(r.error); else alert('투표 제출됨. 다른 사람 다 하면 자동 마감.'); });
+    }, r=>{
+      if (r?.error){ updateSaved('❌ '+r.error, 'err'); showError(r.error); return; }
+      updateSaved(`✅ 저장됨 — 별점 ${r.savedScores}건 / MVP ${r.savedMvp}건 / dud ${r.savedDud}건. 다른 사람도 마치면 자동 마감, 아니면 호스트가 지금 마감 눌러.`, 'ok');
+    });
   };
+  // Auto-save on any change (debounced)
+  let autoT = null;
+  function autoSave(){
+    updateProgress();
+    if (autoT) clearTimeout(autoT);
+    autoT = setTimeout(submit, 500);
+  }
+
+  // Progress panel for ALL players
+  const vp = STATE?.votingProgress || null;
+  const progressRows = (vp?.players || []).map(pp => {
+    const isMe = me && pp.id === me.id;
+    return h('div',{class:'vote-prog-row'+(pp.submitted?' done':'')+(isMe?' me':'')},
+      h('span',{class:'name'}, pp.name + (isMe?' (나)':'')),
+      h('span',{class:'stat'}, `별점 ${pp.scoreCount}/${pp.targetsNeeded}`),
+      h('span',{class:'stat'}, `MVP ${pp.mvpCount}`),
+      h('span',{class:'stat'}, `dud ${pp.dudCount}`),
+      h('span',{class:'st'}, pp.submitted ? '✅ 완료' : '⏳ 진행 중'),
+    );
+  });
+
   const panel = h('div',{class:'card-panel'},
     h('h2',{}, '드래프트 종료 → 투표'),
-    h('div',{class:'hint'}, '각 상대 플레이어의 빌드에 1~5점을 매기고, MVP 카드/dud 카드에 클릭해 표시. 모두 제출하면 자동 마감 · 호스트는 즉시 마감 가능.'),
+    h('div',{class:'hint'}, '각 상대에게 1~5★. 카드 클릭=MVP(골드) · Shift+클릭=dud(빨강). 변경사항은 0.5초 후 자동 저장됨.'),
+    h('div',{style:'margin:6px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center'},
+      progressBadge, savedLine,
+      h('button',{onclick:submit}, '지금 저장'),
+      (room.hostId===me?.id) ? h('button',{class:'danger', onclick:()=>{
+        if (!confirm('지금 마감하면 미제출자의 별점은 계산에서 제외됩니다. 진행?')) return;
+        socket.emit('closeVoting',{},r=>{ if(r?.error) showError(r.error); });
+      }}, '🔒 호스트: 지금 마감') : null,
+    ),
+    h('div',{class:'vote-progress'},
+      h('h3',{style:'margin:0 0 4px'}, '👥 전체 투표 진행'),
+      progressRows.length ? progressRows : h('div',{class:'hint'}, '데이터 없음'),
+    ),
     room.players.filter(p=>me && p.id!==me.id).map(p=>{
       const other = (others||[]).find(o=>o.id===p.id);
       const picks = other ? other.picked||[] : [];
-      return h('div',{style:'margin-bottom:14px;border:1px solid var(--border);border-radius:8px;padding:10px;background:#fff'},
-        h('div',{style:'display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap'},
+      return h('div',{class:'vote-target'},
+        h('div',{class:'vote-head'},
           h('strong',{}, p.name),
           h('div',{class:'rate'},
-            [1,2,3,4,5].map(n=>h('button',{class:scores[p.id]===n?'on':'', onclick:()=>{ scores[p.id]=n; drawRoom(STATE); }}, n+'★'))
-          )
+            [1,2,3,4,5].map(n=>h('button',{class:scores[p.id]===n?'on':'', onclick:()=>{
+              if (scores[p.id]===n) delete scores[p.id]; else scores[p.id]=n;
+              drawRoom(STATE); autoSave();
+            }}, n+'★'))
+          ),
+          h('span',{class:'my-score-badge'}, scores[p.id]?`✓ ${scores[p.id]}★ 선택됨`:'별점 미선택'),
         ),
-        h('div',{style:'margin-top:6px'}, h('span',{class:'hint'}, 'MVP는 골드, dud는 빨강. 다시 누르면 해제.')),
+        h('div',{style:'margin-top:6px'}, h('span',{class:'hint'}, '클릭=MVP(골드) · Shift+클릭=dud(빨강). 다시 누르면 해제. 카드에 마우스 올리면 능력 텍스트.')),
         h('div',{class:'picked-list', style:'margin-top:6px'},
           picks.map(c=>{
             const isMvp=mvpSet.has(c.code), isDud=dudSet.has(c.code);
+            const abilTxt = iconize(c.ability)||'(능력 미입력)';
             return h('span',{
               class:'pick-pill '+(c.phase==='occupations'?'occ':'min')+(isMvp?' mvp':'')+(isDud?' dud':''),
+              title: `${c.name} (${c.code})\n${abilTxt}${c.cost&&c.cost!=='-'?'\n비용: '+c.cost:''}${c.vp&&c.vp!=='-'?'\n승점: '+c.vp:''}`,
               onclick:e=>{
                 if (e.shiftKey){
                   if (dudSet.has(c.code)) dudSet.delete(c.code); else { dudSet.add(c.code); mvpSet.delete(c.code); }
                 } else {
                   if (mvpSet.has(c.code)) mvpSet.delete(c.code); else { mvpSet.add(c.code); dudSet.delete(c.code); }
                 }
-                drawRoom(STATE);
-              }, title:'클릭=MVP, Shift+클릭=dud'
-            }, c.name);
+                drawRoom(STATE); autoSave();
+              },
+            }, (isMvp?'👑 ':'')+(isDud?'💩 ':'')+c.name);
           })
         )
       );
     }),
-    h('div',{style:'margin-top:10px'},
-      h('button',{onclick:submit}, '내 투표 제출'),
-      room.hostId===me?.id ? h('button',{class:'secondary', style:'margin-left:8px', onclick:()=>socket.emit('closeVoting',{},r=>{})}, '호스트: 지금 마감') : null,
-    )
+    h('div',{style:'margin-top:12px;padding:10px;background:#f4ecd8;border-radius:6px'},
+      h('strong',{}, '내 별점 진행: ', myProgress()),
+      h('div',{class:'hint',style:'margin-top:4px'}, '별점을 모두 매기면 자동 마감 대상. 호스트는 언제든 강제 마감 가능.'),
+    ),
   );
   app.append(panel);
+  updateProgress();
 }
 
+// need `votingProgress` inside renderVoting — expose it via closure
+let votingProgress = null;
+
 function renderResults(room, me, others){
-  const tally = STATE?.voting?.results || null;
+  const allPlayers = room.players.map(p => {
+    if (me && p.id === me.id) return me;
+    return (others||[]).find(o=>o.id===p.id);
+  });
   app.append(h('div',{class:'card-panel'},
     h('h2',{}, '결과'),
-    h('div',{class:'hint'}, '카드 티어/통계 페이지에서 누적 결과를 볼 수 있음.'),
-    h('div',{style:'margin-top:8px'},
-      h('a',{href:'#/stats'}, '티어/통계 →'),
-      ' · ',
+    h('div',{class:'hint'}, '카드 티어/통계 · 플레이어 티어보드 · 덱 티어보드에서 누적 결과를 볼 수 있음.'),
+    h('div',{style:'margin-top:8px;display:flex;gap:10px;flex-wrap:wrap'},
+      h('a',{href:'#/players'}, '🏆 플레이어 티어 →'),
+      h('a',{href:'#/decks-tier'}, '📚 덱 티어 →'),
+      h('a',{href:'#/stats'}, '카드 티어/통계 →'),
       h('a',{href:'#/history'}, '기록 →'),
     ),
-    h('h3',{}, '플레이어별 픽'),
+    h('h3',{}, '플레이어별 픽 & 초기 손패'),
     room.players.map(p=>{
-      const player = (others||[]).find(o=>o.id===p.id) || (me && me.id===p.id?me:null);
+      const player = allPlayers.find(x => x && x.id === p.id);
       const picks = player ? (player.picked||[]) : [];
-      return h('div',{style:'margin-bottom:10px'},
-        h('div',{}, h('strong',{}, p.name)),
-        h('div',{class:'picked-list'},
-          picks.map(c=>h('span',{class:'pick-pill '+(c.phase==='occupations'?'occ':'min')}, c.name))
+      const initial = player ? player.initialHands : null;
+      const showInitial = h('button',{class:'secondary small', onclick:()=>{
+        if (!initial) { alert('초기 손패 데이터 없음.'); return; }
+        openModal(h('div',{},
+          h('h3',{}, `${p.name} 의 초기 손패 (드래프트 시작 시 배분)`),
+          initial.occupations ? h('div',{},
+            h('h4',{}, `직업 (${initial.occupations.length}장)`),
+            h('div',{class:'grid cards'}, initial.occupations.map(c => cardEl({...c, deckId:c.deckId})))
+          ) : null,
+          initial.minors ? h('div',{},
+            h('h4',{}, `부속설비 (${initial.minors.length}장)`),
+            h('div',{class:'grid cards'}, initial.minors.map(c => cardEl({...c, deckId:c.deckId})))
+          ) : null,
+        ));
+      }}, '🎴 초기 손패 보기');
+      const showPicks = h('button',{class:'secondary small', onclick:()=>{
+        openModal(h('div',{},
+          h('h3',{}, `${p.name} 의 최종 픽 (${picks.length}장)`),
+          h('div',{class:'grid cards'}, picks.map(c => cardEl(c))),
+        ));
+      }}, '🃏 픽 카드 상세');
+      return h('div',{style:'margin-bottom:10px;padding:8px;background:#faf5e6;border-radius:6px'},
+        h('div',{style:'display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px'},
+          h('div',{}, h('strong',{}, p.name), ` · 최종 ${picks.length}장`),
+          h('div',{class:'actions'}, showPicks, showInitial),
+        ),
+        h('div',{class:'picked-list',style:'margin-top:6px'},
+          picks.map(c=>h('span',{class:'pick-pill '+(c.phase==='occupations'?'occ':'min'),
+            title: `${c.name} (${c.code})\n${iconize(c.ability)||'(능력 미입력)'}`}, c.name))
         )
       );
     })

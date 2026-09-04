@@ -111,9 +111,25 @@ function publicRoom(room) {
 
 function playerView(room, playerId) {
   const me = room.players.find(p => p.id === playerId);
-  // Privacy rule: during drafting, other players' picks are HIDDEN.
-  // Only reveal after status === 'finished' (voting or results phase).
   const draftDone = room.status === 'finished';
+  // Voting progress info (visible to all)
+  let votingProgress = null;
+  if (room.voting){
+    const totalTargets = room.players.length - 1;
+    const submitted = [];
+    for (const p of room.players){
+      const v = (room.votes||{})[p.id] || {};
+      const scoreCount = Object.keys(v.playerScores||{}).length;
+      submitted.push({
+        id: p.id, name: p.name,
+        submitted: scoreCount >= totalTargets && totalTargets > 0,
+        scoreCount, targetsNeeded: totalTargets,
+        mvpCount: (v.mvpCards||[]).length,
+        dudCount: (v.dudCards||[]).length,
+      });
+    }
+    votingProgress = { players: submitted, totalTargets };
+  }
   return {
     room: publicRoom(room),
     me: me ? {
@@ -121,18 +137,21 @@ function playerView(room, playerId) {
       hand: room.hands[me.id] || [],
       picked: me.picked,
       hasPickedThisRound: !!me.pickedThisRound,
+      lastPickCode: me.lastPickCode || null,
       myVotes: room.votes ? (room.votes[me.id] || {}) : null,
+      initialHands: draftDone ? (room.initialHands?.[me.id] || null) : null,
     } : null,
     others: room.players.map(p => p.id === playerId ? null : ({
       id: p.id, name: p.name,
       handSize: (room.hands[p.id] || []).length,
-      picked: draftDone ? p.picked : [],           // 드래프트 중에는 빈 배열
-      pickedCount: p.picked.length,                // 몇 장 픽했는지 수만 노출
+      picked: draftDone ? p.picked : [],
+      pickedCount: p.picked.length,
       hasPickedThisRound: !!p.pickedThisRound,
+      initialHands: draftDone ? (room.initialHands?.[p.id] || null) : null,
     })).filter(Boolean),
-    // 로그도 드래프트 종료 후에만 공개
     log: draftDone ? room.log : [],
     voting: room.voting || null,
+    votingProgress,
   };
 }
 
@@ -160,9 +179,14 @@ function dealPhase(room, phase) {
     return { error: `${kind} 카드 부족: 필요 ${need}, 풀 ${pool.length}. 덱 선택을 늘리거나 한손 카드 수를 줄이세요.` };
   }
   room.hands = {};
+  // Preserve initial hands per phase so we can show them after draft
+  room.initialHands = room.initialHands || {};
   let idx = 0;
   for (const p of room.players) {
-    room.hands[p.id] = pool.slice(idx, idx + room.cardsPerHand);
+    const dealt = pool.slice(idx, idx + room.cardsPerHand);
+    room.hands[p.id] = dealt.slice();
+    room.initialHands[p.id] = room.initialHands[p.id] || {};
+    room.initialHands[p.id][phase] = dealt.slice();
     idx += room.cardsPerHand;
     p.pickedThisRound = false;
   }
@@ -223,7 +247,9 @@ function allPickedThisRound(room) {
 
 function passHands(room) {
   const n = room.players.length;
-  const dir = (room.round % 2 === 1) ? 1 : -1;
+  // Consistent direction within a phase (real draft: pass one way per pack).
+  // Occupations pack: pass to the LEFT (dir=+1). Minors pack: pass to the RIGHT (dir=-1).
+  const dir = (room.phase === 'occupations') ? 1 : -1;
   const newHands = {};
   for (let i = 0; i < n; i++) {
     const from = room.players[i];
@@ -641,13 +667,15 @@ io.on('connection', (socket) => {
     if (!room || room.status !== 'drafting') return cb && cb({ error:'드래프트 중 아님.' });
     const me = room.players.find(p => p.id === currentPlayerId);
     if (!me) return cb && cb({ error:'플레이어 없음.' });
-    if (me.pickedThisRound) return cb && cb({ error:'이미 픽함.' });
+    if (me.pickedThisRound) return cb && cb({ error:'이미 픽함. 취소 후 다시 선택.' });
     const hand = room.hands[me.id] || [];
     const idx = hand.findIndex(c => c.code === cardCode);
     if (idx < 0) return cb && cb({ error:'내 손에 없는 카드.' });
     const [card] = hand.splice(idx, 1);
     me.picked.push({ ...card, phase: room.phase, round: room.round });
     me.pickedThisRound = true;
+    // Store what we picked THIS round, so we can undo it
+    me.lastPickCode = card.code;
     room.log.push({ phase:room.phase, round:room.round, playerId:me.id, playerName:me.name, card, ts:Date.now() });
     cb && cb({ ok:true });
     if (allPickedThisRound(room)){
@@ -656,7 +684,40 @@ io.on('connection', (socket) => {
       else { room.round += 1; endPhaseOrDraft(room); }
       if (room.status === 'drafting') startTurnTimer(room);
       else clearTurnTimer(room);
+      // After all picked, no more undo possible from previous round
+      for (const p of room.players) p.lastPickCode = null;
     }
+    emitRoom(room);
+  });
+
+  // Undo the current-round pick as long as NOT everyone has picked yet.
+  socket.on('undoPick', (_, cb) => {
+    if (!currentRoomId) return cb && cb({ error:'방 없음.' });
+    const room = rooms.get(currentRoomId);
+    if (!room || room.status !== 'drafting') return cb && cb({ error:'드래프트 중 아님.' });
+    const me = room.players.find(p => p.id === currentPlayerId);
+    if (!me) return cb && cb({ error:'플레이어 없음.' });
+    if (!me.pickedThisRound || !me.lastPickCode) return cb && cb({ error:'취소할 픽이 없음.' });
+    // If everyone else finished picking, we're just waiting for hands to pass — too late.
+    // But since server processes picks serially, if this player is last, the pass already ran and their pickedThisRound was reset.
+    // So we can safely allow undo while pickedThisRound is still true and hands weren't rotated.
+    const picked = me.picked;
+    const lastIdx = picked.length - 1;
+    if (lastIdx < 0 || picked[lastIdx].code !== me.lastPickCode) return cb && cb({ error:'취소할 픽 위치 불일치.' });
+    const [card] = picked.splice(lastIdx, 1);
+    // Return card to hand
+    room.hands[me.id] = room.hands[me.id] || [];
+    room.hands[me.id].push({ code: card.code, name: card.name, nameEn: card.nameEn||'', ability: card.ability||'', abilityEn: card.abilityEn||'', cost: card.cost||'', cost2: card.cost2||'', vp: card.vp||'', condition: card.condition||'', passing: card.passing||'', category: card.category||'', imageUrl: card.imageUrl||'', deckId: card.deckId });
+    me.pickedThisRound = false;
+    me.lastPickCode = null;
+    // Remove the last log entry for this player+card in current phase/round
+    for (let i = room.log.length-1; i >= 0; i--){
+      const l = room.log[i];
+      if (l.playerId === me.id && l.card.code === card.code && l.phase === room.phase && l.round === room.round){
+        room.log.splice(i, 1); break;
+      }
+    }
+    cb && cb({ ok:true });
     emitRoom(room);
   });
 
@@ -672,7 +733,7 @@ io.on('connection', (socket) => {
     if (!currentRoomId) return cb && cb({error:'방 없음.'});
     const room = rooms.get(currentRoomId); if (!room || !room.voting?.open) return cb && cb({error:'투표 중 아님.'});
     const me = room.players.find(p => p.id === currentPlayerId); if (!me) return cb && cb({error:'플레이어 없음.'});
-    const v = room.votes[me.id] = { playerScores:{}, mvpCards:[], dudCards:[] };
+    const v = room.votes[me.id] = { playerScores:{}, mvpCards:[], dudCards:[], submittedAt: Date.now() };
     for (const [tid, sc] of Object.entries(playerScores||{})){
       if (tid === me.id) continue;
       const n = Math.round(Number(sc));
@@ -680,10 +741,11 @@ io.on('connection', (socket) => {
     }
     v.mvpCards = (mvpCards||[]).filter(c=>typeof c==='string').slice(0,10);
     v.dudCards = (dudCards||[]).filter(c=>typeof c==='string').slice(0,10);
-    cb && cb({ok:true});
-    // If all players submitted, close.
-    const allDone = room.players.every(p => Object.keys(room.votes[p.id]?.playerScores||{}).length >= (room.players.length-1));
-    if (allDone) finalizeVoting(room);
+    cb && cb({ok:true, savedScores: Object.keys(v.playerScores).length, savedMvp: v.mvpCards.length, savedDud: v.dudCards.length});
+    // Auto-close only if EVERYONE submitted full ratings
+    const need = room.players.length - 1;
+    const allDone = room.players.every(p => Object.keys(room.votes[p.id]?.playerScores||{}).length >= need);
+    if (allDone && need > 0) finalizeVoting(room);
     emitRoom(room);
   });
 
